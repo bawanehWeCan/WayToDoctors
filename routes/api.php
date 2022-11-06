@@ -8,6 +8,10 @@ use App\Http\Controllers\Api\RolesController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\PermissionController;
 use App\Http\Controllers\Api\ReviewController;
+use App\Http\Controllers\Api\ClinicController;
+use App\Http\Controllers\Api\DoctorController;
+use App\Http\Controllers\Api\BlogController;
+
 
 
 /*
@@ -33,6 +37,33 @@ Route::post('/password-otb', [AuthController::class, 'password']);
 Route::post('change-password', [AuthController::class, 'changePassword']);
 
 
+
+
+//Clinic
+Route::get('clinics', [ClinicController::class, 'list']);
+Route::post('clinic-create', [ClinicController::class, 'save']);
+Route::get('clinic/{id}', [ClinicController::class, 'view']);
+Route::get('clinic/delete/{id}', [ClinicController::class, 'delete']);
+Route::post('clinic/edit/{id}', [ClinicController::class, 'edit']);
+
+
+//Doctor
+Route::get('doctors', [DoctorController::class, 'list']);
+Route::post('doctor-create', [DoctorController::class, 'save']);
+Route::get('doctor/{id}', [DoctorController::class, 'view']);
+Route::get('doctor/delete/{id}', [DoctorController::class, 'delete']);
+Route::post('doctor/edit/{id}', [DoctorController::class, 'edit']);
+
+
+//Blog
+Route::get('blogs', [BlogController::class, 'list']);
+Route::post('blog-create', [BlogController::class, 'save']);
+Route::get('blog/{id}', [BlogController::class, 'view']);
+Route::get('blog/delete/{id}', [BlogController::class, 'delete']);
+Route::post('blog/edit/{id}', [BlogController::class, 'edit']);
+
+
+
 // cat
 
 //only those have manage_user permission will get access
@@ -40,6 +71,7 @@ Route::get('categories', [CategoryController::class, 'list']);
 Route::post('category-create', [CategoryController::class, 'store']);
 Route::get('category/{id}', [CategoryController::class, 'profile']);
 Route::get('category/delete/{id}', [CategoryController::class, 'delete']);
+
 
 
 //Reviews
