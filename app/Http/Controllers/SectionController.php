@@ -28,7 +28,6 @@ class SectionController extends ApiController
     }
 
     public function updateSection( SectionRequest $request,$id){
-        $id
         return $this->update($request->all(),$id );
 
     }
