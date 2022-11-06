@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Section extends Model
+class Answer extends Model
 {
     use HasFactory;
 
@@ -13,7 +13,7 @@ class Section extends Model
 
     public $timestamps = true;
 
-    public function questions(){
-        return $this->hasMany(Question::class);
+    public function question(){
+        return $this->belongsTo(Question::class);
     }
 }
