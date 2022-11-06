@@ -8,7 +8,7 @@ use App\Http\Controllers\Api\RolesController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\PermissionController;
 use App\Http\Controllers\Api\ReviewController;
-
+use App\Http\Controllers\SectionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,6 +60,12 @@ Route::get('faq/delete/{id}', [FaqController::class, 'delete']);
 
 Route::post('users/search', [UserController::class, 'search']);
 
+############################### section ################################
+Route::get('categories', [SectionController::class, 'list']);
+Route::post('section-create', [SectionController::class, 'store']);
+Route::get('section/{id}', [SectionController::class, 'view']);
+Route::put('section-update/{id}', [SectionController::class, 'edit']);
+Route::get('section/delete/{id}', [SectionController::class, 'delete']);
 
 Route::middleware(['auth:api'])->group(function () {
 
