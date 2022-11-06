@@ -61,10 +61,10 @@ Route::get('faq/delete/{id}', [FaqController::class, 'delete']);
 Route::post('users/search', [UserController::class, 'search']);
 
 ############################### section ################################
-Route::get('categories', [SectionController::class, 'list']);
-Route::post('section-create', [SectionController::class, 'store']);
+Route::get('sections', [SectionController::class, 'list']);
+Route::post('section-create', [SectionController::class, 'save']);
 Route::get('section/{id}', [SectionController::class, 'view']);
-Route::put('section-update/{id}', [SectionController::class, 'edit']);
+Route::put('section-update/{id}', [SectionController::class, 'updateSection']);
 Route::get('section/delete/{id}', [SectionController::class, 'delete']);
 
 Route::middleware(['auth:api'])->group(function () {

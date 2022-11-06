@@ -27,9 +27,9 @@ class SectionController extends ApiController
 
     }
 
-    public function edit( SectionRequest $request, $id){
-
-        return $this->update( $request->all(), $id );
+    public function updateSection( SectionRequest $request,$id){
+        $id
+        return $this->update($request->all(),$id );
 
     }
 }
