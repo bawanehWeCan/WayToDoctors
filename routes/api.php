@@ -6,10 +6,9 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\RolesController;
 use App\Http\Controllers\Api\ReviewController;
-use App\Http\Controllers\Api\SectionController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\PermissionController;
-
+use App\Http\Controllers\Api\SectionController;
 
 /*
 |--------------------------------------------------------------------------

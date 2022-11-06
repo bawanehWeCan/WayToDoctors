@@ -15,6 +15,7 @@ return array(
     'App\\Http\\Controllers\\Api\\PermissionController' => $baseDir . '/app/Http/Controllers/Api/PermissionController.php',
     'App\\Http\\Controllers\\Api\\ReviewController' => $baseDir . '/app/Http/Controllers/Api/ReviewController.php',
     'App\\Http\\Controllers\\Api\\RolesController' => $baseDir . '/app/Http/Controllers/Api/RolesController.php',
+    'App\\Http\\Controllers\\Api\\SectionController' => $baseDir . '/app/Http/Controllers/Api/SectionController.php',
     'App\\Http\\Controllers\\Api\\UserController' => $baseDir . '/app/Http/Controllers/Api/UserController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
