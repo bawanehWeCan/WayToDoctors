@@ -116,12 +116,12 @@ class ApiController extends Controller
     }
 
 
-    public function update($id,$data){
+    public function update($data,$id){
 
-        $model = $this->repositry->edit( $id,$data );
+        $model = $this->repositry->edit( $data ,$id);
 
         if ($model) {
-            return $this->returnData('data', new $this->resource( $model ), __('Get  succesfully'));
+            return $this->returnData('data', new $this->resource( $model ), __('Updated succesfully'));
         }
 
         return $this->returnError(__('Sorry! Failed to get !'));
