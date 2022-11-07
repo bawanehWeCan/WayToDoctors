@@ -29,8 +29,13 @@ class DoctorResource extends JsonResource
             'lat'=>$this->lat,
             'long'=>$this->long,
             // 'clinic_id'=>$this->clinic_id,
-            'clinic'=>new ClinicResource($this->clinic),
+           'clinic'=>new ClinicResource($this?->clinic),
+            'certificates'=> CertificateResource::collection($this?->certificates),
+            'studies'=> StudyResource::collection($this?->studies),
+            'pictures'=> PictureResource::collection($this?->pictures),
 
         ];
+
+
     }
 }

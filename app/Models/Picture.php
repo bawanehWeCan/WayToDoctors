@@ -5,10 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Blog extends Model
+class Picture extends Model
 {
     use HasFactory;
     protected $guarded=[];
+
+    public function doctor(){
+        return $this->belongsTo(Doctor::class);
+    }
 
     public function setImageAttribute($value){
         if ($value){
@@ -19,4 +23,6 @@ class Blog extends Model
             $this->attributes['image'] =  'img/'.$filename;
         }
     }
+
+
 }

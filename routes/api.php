@@ -11,6 +11,9 @@ use App\Http\Controllers\Api\ReviewController;
 use App\Http\Controllers\Api\ClinicController;
 use App\Http\Controllers\Api\DoctorController;
 use App\Http\Controllers\Api\BlogController;
+use App\Http\Controllers\Api\StudyController;
+use App\Http\Controllers\Api\CertificateController;
+use App\Http\Controllers\Api\PictureController;
 
 
 
@@ -62,6 +65,29 @@ Route::get('blog/{id}', [BlogController::class, 'view']);
 Route::get('blog/delete/{id}', [BlogController::class, 'delete']);
 Route::post('blog/edit/{id}', [BlogController::class, 'edit']);
 
+
+//Certificate
+Route::get('certificates', [CertificateController::class, 'list']);
+Route::post('certificate-create', [CertificateController::class, 'save']);
+Route::get('certificate/{id}', [CertificateController::class, 'view']);
+Route::get('certificate/delete/{id}', [CertificateController::class, 'delete']);
+Route::post('certificate/edit/{id}', [CertificateController::class, 'edit']);
+
+
+//Study
+Route::get('studies', [StudyController::class, 'list']);
+Route::post('study-create', [StudyController::class, 'save']);
+Route::get('study/{id}', [StudyController::class, 'view']);
+Route::get('study/delete/{id}', [StudyController::class, 'delete']);
+Route::post('study/edit/{id}', [StudyController::class, 'edit']);
+
+
+//Picture
+Route::get('pictures', [PictureController::class, 'list']);
+Route::post('picture-create', [PictureController::class, 'save']);
+Route::get('picture/{id}', [PictureController::class, 'view']);
+Route::get('picture/delete/{id}', [PictureController::class, 'delete']);
+Route::post('picture/edit/{id}', [PictureController::class, 'edit']);
 
 
 // cat
