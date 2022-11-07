@@ -91,7 +91,7 @@ Route::get('result/{id}', [ResultController::class, 'view']);
 Route::put('result-update/{id}', [ResultController::class, 'updateResult']);
 Route::get('result/delete/{id}', [ResultController::class, 'delete']);
 
-Route::middleware(['auth:api'])->group(function () {
+// Route::middleware(['auth:api'])->group(function () {
 
 
     Route::post('/review/edit/{id}', [ReviewController::class, 'edit']);
@@ -127,4 +127,4 @@ Route::middleware(['auth:api'])->group(function () {
         Route::get('/permission/{id}', [PermissionController::class, 'show']);
         Route::get('/permission/delete/{id}', [PermissionController::class, 'delete']);
     });
-});
+// });
