@@ -28,8 +28,8 @@ class AnswerController extends ApiController
 
     }
 
-    public function updateAnswer( AnswerRequest $request,$id){
-        return $this->update($request->all(),$id );
+    public function edit( $id,AnswerRequest $request){
+        return $this->update($id,$request->all() );
 
     }
 }

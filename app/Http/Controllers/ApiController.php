@@ -116,11 +116,11 @@ class ApiController extends Controller
     }
 
 
-    public function update($data,$id){
+    public function update($id,$data){
 
-        $model = $this->repositry->edit( $data ,$id);
-
+        $model = $this->repositry->getByID($id);
         if ($model) {
+            $model = $this->repositry->edit( $id,$data );
             return $this->returnData('data', new $this->resource( $model ), __('Updated succesfully'));
         }
 

@@ -67,28 +67,28 @@ Route::post('users/search', [UserController::class, 'search']);
 Route::get('sections', [SectionController::class, 'list']);
 Route::post('section-create', [SectionController::class, 'save']);
 Route::get('section/{id}', [SectionController::class, 'view']);
-Route::put('section-update/{id}', [SectionController::class, 'updateSection']);
+Route::post('section/update/{id}', [SectionController::class, 'edit']);
 Route::get('section/delete/{id}', [SectionController::class, 'delete']);
 
 ############################### question ################################
 Route::get('questions', [QuestionController::class, 'list']);
 Route::post('question-create', [QuestionController::class, 'save']);
 Route::get('question/{id}', [QuestionController::class, 'view']);
-Route::put('question-update/{id}', [QuestionController::class, 'updateQuestion']);
+Route::post('question/update/{id}', [QuestionController::class, 'edit']);
 Route::get('question/delete/{id}', [QuestionController::class, 'delete']);
 
 ############################### answer ################################
 Route::get('answers', [AnswerController::class, 'list']);
 Route::post('answer-create', [AnswerController::class, 'save']);
 Route::get('answer/{id}', [AnswerController::class, 'view']);
-Route::put('answer-update/{id}', [AnswerController::class, 'updateAnswer']);
+Route::post('answer/update/{id}', [AnswerController::class, 'edit']);
 Route::get('answer/delete/{id}', [AnswerController::class, 'delete']);
 
 ############################### result ################################
 Route::get('results', [ResultController::class, 'list']);
 Route::post('result-create', [ResultController::class, 'save']);
 Route::get('result/{id}', [ResultController::class, 'view']);
-Route::put('result-update/{id}', [ResultController::class, 'updateResult']);
+Route::post('result/update/{id}', [ResultController::class, 'edit']);
 Route::get('result/delete/{id}', [ResultController::class, 'delete']);
 
 // Route::middleware(['auth:api'])->group(function () {

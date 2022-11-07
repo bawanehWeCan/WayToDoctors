@@ -28,8 +28,8 @@ class QuestionController extends ApiController
 
     }
 
-    public function updateQuestion( QuestionRequest $request,$id){
-        return $this->update($request->all(),$id );
+    public function edit( $id,QuestionRequest $request){
+        return $this->update($id,$request->all() );
 
     }
 }
