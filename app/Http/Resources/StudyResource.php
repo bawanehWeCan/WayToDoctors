@@ -19,8 +19,8 @@ class StudyResource extends JsonResource
             'title'=>$this->title,
             'image'=>$this->image,
             'file'=>$this->file,
-            'doctor_id'=>$this->doctor_id,
-            // 'doctor'=>new DoctorResource($this->doctor),
+            // 'doctor_id'=>$this->doctor_id,
+            'doctor'=>new DoctorResource($this->doctor),
         ];
     }
 }

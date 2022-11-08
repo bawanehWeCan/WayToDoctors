@@ -14,6 +14,7 @@ use App\Http\Controllers\Api\BlogController;
 use App\Http\Controllers\Api\StudyController;
 use App\Http\Controllers\Api\CertificateController;
 use App\Http\Controllers\Api\PictureController;
+use App\Http\Controllers\Api\AppointmentController;
 
 
 
@@ -88,6 +89,13 @@ Route::post('picture-create', [PictureController::class, 'save']);
 Route::get('picture/{id}', [PictureController::class, 'view']);
 Route::get('picture/delete/{id}', [PictureController::class, 'delete']);
 Route::post('picture/edit/{id}', [PictureController::class, 'edit']);
+
+//Appointment
+Route::get('appointments', [AppointmentController::class, 'list']);
+Route::post('appointment-create', [AppointmentController::class, 'save']);
+Route::get('appointment/{id}', [AppointmentController::class, 'view']);
+Route::get('appointment/delete/{id}', [AppointmentController::class, 'delete']);
+Route::post('appointment/edit/{id}', [AppointmentController::class, 'edit']);
 
 
 // cat
