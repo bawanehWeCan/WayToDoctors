@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\QuestionController;
 use App\Http\Controllers\Api\PermissionController;
 use App\Http\Controllers\Api\ResultController;
+use App\Http\Controllers\Api\CountriesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -91,7 +92,7 @@ Route::get('result/{id}', [ResultController::class, 'view']);
 Route::post('result/update/{id}', [ResultController::class, 'edit']);
 Route::get('result/delete/{id}', [ResultController::class, 'delete']);
 
-// Route::middleware(['auth:api'])->group(function () {
+Route::middleware(['auth:api'])->group(function () {
 
 
     Route::post('/review/edit/{id}', [ReviewController::class, 'edit']);
@@ -127,4 +128,6 @@ Route::get('result/delete/{id}', [ResultController::class, 'delete']);
         Route::get('/permission/{id}', [PermissionController::class, 'show']);
         Route::get('/permission/delete/{id}', [PermissionController::class, 'delete']);
     });
-// });
+});
+
+Route::get('country-list', [CountriesController::class, 'getCountries']);

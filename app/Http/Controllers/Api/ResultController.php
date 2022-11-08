@@ -30,7 +30,6 @@ class ResultController extends ApiController
         if (!$question) {
             return $this->returnError(__("Sorry question is not exist"));
         }
-        $this->view($request->question_id);
         if($this->checkQuestion($request)){
             return $this->store( $request->all() );
         }else{
