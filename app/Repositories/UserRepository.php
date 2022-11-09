@@ -47,18 +47,16 @@ class UserRepository extends AbstractRepository
             'active'=>$data->active,
             'password'=>Hash::make($data->password),
         ]);
-        $model->profile()->create([
-            "second_name"=>$data->second_name,
-            "third_name"=>$data->third_name,
-            "last_name"=>$data->last_name,
-            "nationality"=>$data->nationality,
-            "country"=>$data->country,
-            "city"=>$data->city,
-            "national_id"=>$data->national_id,
-            "date_of_birth"=> Carbon::parse($data->date_of_birth)->format('Y-m-d'),
-            "gender"=>$data->gender,
-            "status"=>$data->status,
-    ]);
+        $model->profile()->create($data->except([
+            'name',
+            'email',
+            'phone',
+            'step',
+            'active',
+            'image',
+            'password',
+
+        ]));
 
         return $model->fresh();
 
