@@ -5,8 +5,13 @@ use App\Http\Controllers\Api\FaqController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\RolesController;
+use App\Http\Controllers\Api\AnswerController;
+use App\Http\Controllers\Api\ReviewController;
+use App\Http\Controllers\Api\SectionController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\QuestionController;
 use App\Http\Controllers\Api\PermissionController;
+
 use App\Http\Controllers\Api\ReviewController;
 use App\Http\Controllers\Api\ClinicController;
 use App\Http\Controllers\Api\DoctorController;
@@ -16,6 +21,8 @@ use App\Http\Controllers\Api\CertificateController;
 use App\Http\Controllers\Api\PictureController;
 use App\Http\Controllers\Api\AppointmentController;
 
+use App\Http\Controllers\Api\ResultController;
+use App\Http\Controllers\Api\CountriesController;
 
 
 /*
@@ -126,6 +133,33 @@ Route::get('faq/delete/{id}', [FaqController::class, 'delete']);
 
 Route::post('users/search', [UserController::class, 'search']);
 
+############################### section ################################
+Route::get('sections', [SectionController::class, 'list']);
+Route::post('section-create', [SectionController::class, 'save']);
+Route::get('section/{id}', [SectionController::class, 'view']);
+Route::post('section/update/{id}', [SectionController::class, 'edit']);
+Route::get('section/delete/{id}', [SectionController::class, 'delete']);
+
+############################### question ################################
+Route::get('questions', [QuestionController::class, 'list']);
+Route::post('question-create', [QuestionController::class, 'save']);
+Route::get('question/{id}', [QuestionController::class, 'view']);
+Route::post('question/update/{id}', [QuestionController::class, 'edit']);
+Route::get('question/delete/{id}', [QuestionController::class, 'delete']);
+
+############################### answer ################################
+Route::get('answers', [AnswerController::class, 'list']);
+Route::post('answer-create', [AnswerController::class, 'save']);
+Route::get('answer/{id}', [AnswerController::class, 'view']);
+Route::post('answer/update/{id}', [AnswerController::class, 'edit']);
+Route::get('answer/delete/{id}', [AnswerController::class, 'delete']);
+
+############################### result ################################
+Route::get('results', [ResultController::class, 'list']);
+Route::post('result-create', [ResultController::class, 'save']);
+Route::get('result/{id}', [ResultController::class, 'view']);
+Route::post('result/update/{id}', [ResultController::class, 'edit']);
+Route::get('result/delete/{id}', [ResultController::class, 'delete']);
 
 Route::middleware(['auth:api'])->group(function () {
 
@@ -164,3 +198,5 @@ Route::middleware(['auth:api'])->group(function () {
         Route::get('/permission/delete/{id}', [PermissionController::class, 'delete']);
     });
 });
+
+Route::get('country-list', [CountriesController::class, 'getCountries']);
