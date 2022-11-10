@@ -19,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','image','phone','type',
+        'name', 'email', 'password','image','phone',
     ];
 
     /**
@@ -70,8 +70,8 @@ class User extends Authenticatable
 
         return $roles;
     }
-    public function services(){
-        return $this->hasMany(Service::class);
+    public function results(){
+        return $this->hasMany(Result::class);
     }
 
     public function products(){
