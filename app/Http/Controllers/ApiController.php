@@ -36,6 +36,17 @@ class ApiController extends Controller
 
     }
 
+
+    public function listWithCondition($key,$value)
+    {
+
+        $data =  $this->repositry->allWithCondition($key,$value);
+
+        return $this->returnData( 'data' , $this->resource::collection( $data ), __('Succesfully'));
+
+
+    }
+
     public function pagination( $lenght = 10 )
     {
 

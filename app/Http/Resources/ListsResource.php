@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Resources;
-use App\Models\User;
+
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ReviewResource extends JsonResource
+class ListsResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,19 +14,10 @@ class ReviewResource extends JsonResource
      */
     public function toArray($request)
     {
+        return [
 
-        return[
-
-            'id'=>$this->id,
-            'title'=>$this->title,
-            'content'=>$this->content,
-            'points'=>$this->points,
-            'status'=>$this->status,
-
-
+            'categories'=>CategoryResource::collection($this->category),
+            'blogs'=>BlogResource::collection(),
         ];
-
-
-
     }
 }

@@ -35,6 +35,13 @@ class Repository{
         return $data;
     }
 
+
+
+    public function allWithCondition($key, $value){
+        $data = $this->model->where( $key,$value)->get();
+        return $data;
+    }
+
         /**
      * @return void
      */

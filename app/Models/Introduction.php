@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Blog extends Model
+class Introduction extends Model
 {
     use HasFactory;
     protected $guarded=[];
@@ -19,8 +19,4 @@ class Blog extends Model
             $this->attributes['image'] =  'img/'.$filename;
         }
     }
-    public function categories(){
-        return $this->morphToMany( Category::class, 'categoryable' );
-    }
-
 }

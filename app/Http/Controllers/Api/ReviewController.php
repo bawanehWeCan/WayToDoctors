@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Review;
+use App\Models\Doctor;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ApiController;
 use App\Http\Requests\ReviewRequest;
@@ -33,6 +34,29 @@ class ReviewController extends ApiController
         $request['user_id'] = Auth::user()->id;
         return $this->update($id,$request->all());
 
+    }
+
+    public function addToDoctor( Request $request, $doctor_id ){
+
+
+        $review = $this->repositry->save( $request->all() );
+
+        $doctor = Doctor::find( $doctor_id );
+
+        $doctor->reviews()->save( $review );
+
+
+        return $this->returnSuccessMessage(__('Added succesfully!'));
+    }
+
+
+    public function getByDoctor( $doctor_id ){
+
+        $doctor = Doctor::find( $doctor_id );
+        // dd( $doctor );
+
+
+        return $this->returnData('data',  $this->resource::collection( $doctor->reviews ), __('Get  succesfully'));
     }
 
 

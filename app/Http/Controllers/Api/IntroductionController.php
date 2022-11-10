@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\Doctor;
+use App\Models\Introduction;
 use Illuminate\Http\Request;
 use App\Repositories\Repository;
-use App\Http\Requests\DoctorRequest;
-use App\Http\Resources\DoctorResource;
+use App\Http\Requests\IntroductionRequest;
+use App\Http\Resources\IntroductionResource;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ApiController;
 
-class DoctorController extends ApiController
+class IntroductionController extends ApiController
 {
     public function __construct()
     {
-        $this->resource = DoctorResource::class;
-        $this->model = app(Doctor::class);
+        $this->resource = IntroductionResource::class;
+        $this->model = app(Introduction::class);
         $this->repositry =  new Repository($this->model);
     }
 
@@ -29,13 +29,4 @@ class DoctorController extends ApiController
         return $this->update($id,$request->all());
 
     }
-
-    public function lookfor(Request $request){
-
-        return $this->search('name',$request->value);
-
-    }
-
-
-
 }

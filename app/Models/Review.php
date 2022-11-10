@@ -16,8 +16,8 @@ class Review extends Model
         return $this->belongsTo(User::class)->where('type','user');
     }
 
-    public function supplier(){
-        return $this->belongsTo(User::class,'supplier_id')->where('type','user');;
+    public function doctor(){
+        return $this->morphByMany( Doctor::class, 'reviewable' );
     }
 
 }
