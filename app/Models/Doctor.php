@@ -35,4 +35,8 @@ class Doctor extends Model
     public function pictures(){
         return $this->hasMany(Picture::class);
     }
+
+    public function reviews(){
+        return $this->morphToMany( Review::class, 'reviewable' );
+    }
 }

@@ -12,7 +12,6 @@ use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\QuestionController;
 use App\Http\Controllers\Api\PermissionController;
 
-use App\Http\Controllers\Api\ReviewController;
 use App\Http\Controllers\Api\ClinicController;
 use App\Http\Controllers\Api\DoctorController;
 use App\Http\Controllers\Api\BlogController;
@@ -20,6 +19,8 @@ use App\Http\Controllers\Api\StudyController;
 use App\Http\Controllers\Api\CertificateController;
 use App\Http\Controllers\Api\PictureController;
 use App\Http\Controllers\Api\AppointmentController;
+use App\Http\Controllers\Api\SliderController;
+use App\Http\Controllers\Api\IntroductionController;
 
 use App\Http\Controllers\Api\ResultController;
 use App\Http\Controllers\Api\CountriesController;
@@ -64,6 +65,12 @@ Route::post('doctor-create', [DoctorController::class, 'save']);
 Route::get('doctor/{id}', [DoctorController::class, 'view']);
 Route::get('doctor/delete/{id}', [DoctorController::class, 'delete']);
 Route::post('doctor/edit/{id}', [DoctorController::class, 'edit']);
+Route::post('doctors/search', [DoctorController::class, 'lookfor']);
+
+Route::post( 'doctor/add-review/{doctor_id}', [ ReviewController::class, 'addToDoctor' ]);
+
+Route::get( 'doctor/get-reviews/{doctor_id}', [ ReviewController::class, 'getByDoctor' ]);
+
 
 
 //Blog
@@ -72,6 +79,12 @@ Route::post('blog-create', [BlogController::class, 'save']);
 Route::get('blog/{id}', [BlogController::class, 'view']);
 Route::get('blog/delete/{id}', [BlogController::class, 'delete']);
 Route::post('blog/edit/{id}', [BlogController::class, 'edit']);
+Route::get('blogs-lists', [BlogController::class, 'getLists']);
+
+Route::post( 'blog/add-category/{blog_id}', [ CategoryController::class, 'addToBlog' ]);
+
+Route::get( 'blog/get-categories/{blog_id}', [ CategoryController::class, 'getByBlog' ]);
+
 
 
 //Certificate
@@ -104,6 +117,20 @@ Route::get('appointment/{id}', [AppointmentController::class, 'view']);
 Route::get('appointment/delete/{id}', [AppointmentController::class, 'delete']);
 Route::post('appointment/edit/{id}', [AppointmentController::class, 'edit']);
 
+
+//Slider
+Route::get('sliders', [SliderController::class, 'list']);
+Route::post('slider-create', [SliderController::class, 'save']);
+Route::get('slider/{id}', [SliderController::class, 'view']);
+Route::get('slider/delete/{id}', [SliderController::class, 'delete']);
+Route::post('slider/edit/{id}', [SliderController::class, 'edit']);
+
+//Introduction
+Route::get('introductions', [IntroductionController::class, 'list']);
+Route::post('introduction-create', [IntroductionController::class, 'save']);
+Route::get('introduction/{id}', [IntroductionController::class, 'view']);
+Route::get('introduction/delete/{id}', [IntroductionController::class, 'delete']);
+Route::post('introduction/edit/{id}', [IntroductionController::class, 'edit']);
 
 // cat
 

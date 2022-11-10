@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Review;
+use App\Models\Doctor;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ApiController;
 use App\Http\Requests\ReviewRequest;
@@ -34,6 +35,7 @@ class ReviewController extends ApiController
         return $this->update($id,$request->all());
 
     }
+
 
 
 }

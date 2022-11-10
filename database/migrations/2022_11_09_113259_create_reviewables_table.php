@@ -13,12 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('reviewables', function (Blueprint $table) {
             $table->id();
-            $table->text('name');
-            $table->text('image');
-            $table->string('type');
-            $table->timestamps();
+            $table->integer('review_id');
+            $table->integer('reviewable_id');  // for example doctor_id
+            $table->text('reviewable_type'); // model type in this case Doctor::class
         });
     }
 
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('reviewables');
     }
 };

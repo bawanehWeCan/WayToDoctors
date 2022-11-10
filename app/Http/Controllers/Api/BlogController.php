@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Blog;
+use App\Models\Category;
+use App\Http\Resources\ListsResource;
 use Illuminate\Http\Request;
 use App\Repositories\Repository;
 use App\Http\Requests\BlogRequest;
 use App\Http\Resources\BlogResource;
+use App\Http\Resources\CategoryResource;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ApiController;
 
@@ -30,4 +33,17 @@ class BlogController extends ApiController
         return $this->update($id,$request->all());
 
     }
+
+
+    public function getLists(){
+
+        $data = array();
+
+        $data['recent']=BlogResource::collection($this->repositry->all() );
+        $data['cats']=CategoryResource::collection( Category::where('type','blog')->get() );
+        $data[ 'random' ]= BlogResource::make( Blog::inRandomOrder()->first() );
+        return $this->returnData( 'data' ,  $data , __('Succesfully'));
+
+
+       }
 }

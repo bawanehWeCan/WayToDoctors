@@ -19,6 +19,10 @@ return new class extends Migration
             $table->date('date');
             $table->text('status')->default('normal');
             $table->text('type')->default('next');
+            $table->text('booking_type');
+            $table->text('location');
+            $table->text('case_description');
+            $table->text('file_path')->nullable();
             $table->integer('doctor_id');
             $table->integer('user_id');
             $table->timestamps();
