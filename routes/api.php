@@ -117,6 +117,9 @@ Route::get('appointment/{id}', [AppointmentController::class, 'view']);
 Route::get('appointment/delete/{id}', [AppointmentController::class, 'delete']);
 Route::post('appointment/edit/{id}', [AppointmentController::class, 'edit']);
 
+Route::get('appointments-next', [AppointmentController::class, 'nextAppointmentList']);
+Route::get('appointments-finished', [AppointmentController::class, 'finishedAppointmentList']);
+Route::get('appointments-canceled', [AppointmentController::class, 'canceledAppointmentList']);
 
 //Slider
 Route::get('sliders', [SliderController::class, 'list']);

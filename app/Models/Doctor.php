@@ -39,4 +39,8 @@ class Doctor extends Model
     public function reviews(){
         return $this->morphToMany( Review::class, 'reviewable' );
     }
+
+    public function categories(){
+        return $this->morphToMany( Category::class, 'categoryable' );
+    }
 }

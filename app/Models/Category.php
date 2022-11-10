@@ -32,4 +32,8 @@ class Category extends Model
     public function blog(){
         return $this->morphByMany( Blog::class, 'categoryable' );
     }
+
+    public function doctor(){
+        return $this->morphByMany( Doctor::class, 'categoryable' );
+    }
 }
