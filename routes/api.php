@@ -60,6 +60,10 @@ Route::post('clinic/edit/{id}', [ClinicController::class, 'edit']);
 
 
 //Doctor
+
+
+
+
 Route::get('doctors', [DoctorController::class, 'list']);
 Route::post('doctor-create', [DoctorController::class, 'save']);
 Route::get('doctor/{id}', [DoctorController::class, 'view']);
@@ -70,6 +74,13 @@ Route::post('doctors/search', [DoctorController::class, 'lookfor']);
 Route::post( 'doctor/add-review/{doctor_id}', [ ReviewController::class, 'addToDoctor' ]);
 
 Route::get( 'doctor/get-reviews/{doctor_id}', [ ReviewController::class, 'getByDoctor' ]);
+
+Route::post( 'doctor/add-category/{doctor_id}', [ CategoryController::class, 'addToDoctor' ]);
+
+Route::get( 'doctors/get-category', [ CategoryController::class, 'getCategoriesForDoctors' ]);
+
+Route::get( 'doctors/get-doctors/{category_id}', [ CategoryController::class, 'getDoctors' ]);
+
 
 
 
@@ -83,7 +94,9 @@ Route::get('blogs-lists', [BlogController::class, 'getLists']);
 
 Route::post( 'blog/add-category/{blog_id}', [ CategoryController::class, 'addToBlog' ]);
 
-Route::get( 'blog/get-categories/{blog_id}', [ CategoryController::class, 'getByBlog' ]);
+Route::get( 'blog/get-blogs/{category_id}', [ CategoryController::class, 'getBlogs' ]);
+
+// Route::get( 'blog/get-categories/{blog_id}', [ CategoryController::class, 'getByBlog' ]);
 
 
 
