@@ -14,6 +14,7 @@ return array(
     'App\\Http\\Controllers\\Api\\AuthController' => $baseDir . '/app/Http/Controllers/Api/AuthController.php',
     'App\\Http\\Controllers\\Api\\BlogController' => $baseDir . '/app/Http/Controllers/Api/BlogController.php',
     'App\\Http\\Controllers\\Api\\CategoryController' => $baseDir . '/app/Http/Controllers/Api/CategoryController.php',
+
     'App\\Http\\Controllers\\Api\\CertificateController' => $baseDir . '/app/Http/Controllers/Api/CertificateController.php',
     'App\\Http\\Controllers\\Api\\ClinicController' => $baseDir . '/app/Http/Controllers/Api/ClinicController.php',
     'App\\Http\\Controllers\\Api\\CountriesController' => $baseDir . '/app/Http/Controllers/Api/CountriesController.php',
@@ -94,6 +95,9 @@ return array(
     'App\\Models\\Clinic' => $baseDir . '/app/Models/Clinic.php',
     'App\\Models\\Doctor' => $baseDir . '/app/Models/Doctor.php',
     'App\\Models\\Faq' => $baseDir . '/app/Models/Faq.php',
+    'App\\Models\\Image' => $baseDir . '/app/Models/Image.php',
+    'App\\Models\\Profile' => $baseDir . '/app/Models/Profile.php',
+
     'App\\Models\\Introduction' => $baseDir . '/app/Models/Introduction.php',
     'App\\Models\\Picture' => $baseDir . '/app/Models/Picture.php',
     'App\\Models\\Question' => $baseDir . '/app/Models/Question.php',
