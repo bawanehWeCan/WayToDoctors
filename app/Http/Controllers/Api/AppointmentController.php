@@ -30,4 +30,20 @@ class AppointmentController extends ApiController
         return $this->update($id,$request->all());
 
     }
+
+    public function nextAppointmentList(){
+
+        return $this->listWithCondition('type','next');
+    }
+
+    public function finishedAppointmentList(){
+
+        return $this->listWithCondition('type','finished');
+    }
+
+    public function canceledAppointmentList(){
+
+        return $this->listWithCondition('type','canceled');
+    }
+
 }

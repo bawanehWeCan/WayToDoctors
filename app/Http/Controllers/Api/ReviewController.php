@@ -36,6 +36,27 @@ class ReviewController extends ApiController
 
     }
 
+    public function addToDoctor( Request $request, $doctor_id ){
 
+
+        $review = $this->repositry->save( $request->all() );
+
+        $doctor = Doctor::find( $doctor_id );
+
+        $doctor->reviews()->save( $review );
+
+
+        return $this->returnSuccessMessage(__('Added succesfully!'));
+    }
+
+
+    public function getByDoctor( $doctor_id ){
+
+        $doctor = Doctor::find( $doctor_id );
+        // dd( $doctor );
+
+
+        return $this->returnData('data',  $this->resource::collection( $doctor->reviews ), __('Get  succesfully'));
+    }
 
 }
