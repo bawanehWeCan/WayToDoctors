@@ -11,8 +11,20 @@ use App\Http\Controllers\Api\SectionController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\QuestionController;
 use App\Http\Controllers\Api\PermissionController;
+
+use App\Http\Controllers\Api\ClinicController;
+use App\Http\Controllers\Api\DoctorController;
+use App\Http\Controllers\Api\BlogController;
+use App\Http\Controllers\Api\StudyController;
+use App\Http\Controllers\Api\CertificateController;
+use App\Http\Controllers\Api\PictureController;
+use App\Http\Controllers\Api\AppointmentController;
+use App\Http\Controllers\Api\SliderController;
+use App\Http\Controllers\Api\IntroductionController;
+
 use App\Http\Controllers\Api\ResultController;
 use App\Http\Controllers\Api\CountriesController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +51,89 @@ Route::post('/password-otb', [AuthController::class, 'password']);
 Route::post('change-password', [AuthController::class, 'changePassword']);
 
 
+
+
+//Clinic
+Route::get('clinics', [ClinicController::class, 'list']);
+Route::post('clinic-create', [ClinicController::class, 'save']);
+Route::get('clinic/{id}', [ClinicController::class, 'view']);
+Route::get('clinic/delete/{id}', [ClinicController::class, 'delete']);
+Route::post('clinic/edit/{id}', [ClinicController::class, 'edit']);
+
+
+//Doctor
+Route::get('doctors', [DoctorController::class, 'list']);
+Route::post('doctor-create', [DoctorController::class, 'save']);
+Route::get('doctor/{id}', [DoctorController::class, 'view']);
+Route::get('doctor/delete/{id}', [DoctorController::class, 'delete']);
+Route::post('doctor/edit/{id}', [DoctorController::class, 'edit']);
+Route::post('doctors/search', [DoctorController::class, 'lookfor']);
+
+Route::post( 'doctor/add-review/{doctor_id}', [ ReviewController::class, 'addToDoctor' ]);
+
+Route::get( 'doctor/get-reviews/{doctor_id}', [ ReviewController::class, 'getByDoctor' ]);
+
+
+
+//Blog
+Route::get('blogs', [BlogController::class, 'list']);
+Route::post('blog-create', [BlogController::class, 'save']);
+Route::get('blog/{id}', [BlogController::class, 'view']);
+Route::get('blog/delete/{id}', [BlogController::class, 'delete']);
+Route::post('blog/edit/{id}', [BlogController::class, 'edit']);
+Route::get('blogs-lists', [BlogController::class, 'getLists']);
+
+Route::post( 'blog/add-category/{blog_id}', [ CategoryController::class, 'addToBlog' ]);
+
+Route::get( 'blog/get-categories/{blog_id}', [ CategoryController::class, 'getByBlog' ]);
+
+
+
+//Certificate
+Route::get('certificates', [CertificateController::class, 'list']);
+Route::post('certificate-create', [CertificateController::class, 'save']);
+Route::get('certificate/{id}', [CertificateController::class, 'view']);
+Route::get('certificate/delete/{id}', [CertificateController::class, 'delete']);
+Route::post('certificate/edit/{id}', [CertificateController::class, 'edit']);
+
+
+//Study
+Route::get('studies', [StudyController::class, 'list']);
+Route::post('study-create', [StudyController::class, 'save']);
+Route::get('study/{id}', [StudyController::class, 'view']);
+Route::get('study/delete/{id}', [StudyController::class, 'delete']);
+Route::post('study/edit/{id}', [StudyController::class, 'edit']);
+
+
+//Picture
+Route::get('pictures', [PictureController::class, 'list']);
+Route::post('picture-create', [PictureController::class, 'save']);
+Route::get('picture/{id}', [PictureController::class, 'view']);
+Route::get('picture/delete/{id}', [PictureController::class, 'delete']);
+Route::post('picture/edit/{id}', [PictureController::class, 'edit']);
+
+//Appointment
+Route::get('appointments', [AppointmentController::class, 'list']);
+Route::post('appointment-create', [AppointmentController::class, 'save']);
+Route::get('appointment/{id}', [AppointmentController::class, 'view']);
+Route::get('appointment/delete/{id}', [AppointmentController::class, 'delete']);
+Route::post('appointment/edit/{id}', [AppointmentController::class, 'edit']);
+
+
+//Slider
+Route::get('sliders', [SliderController::class, 'list']);
+Route::post('slider-create', [SliderController::class, 'save']);
+Route::get('slider/{id}', [SliderController::class, 'view']);
+Route::get('slider/delete/{id}', [SliderController::class, 'delete']);
+Route::post('slider/edit/{id}', [SliderController::class, 'edit']);
+
+//Introduction
+Route::get('introductions', [IntroductionController::class, 'list']);
+Route::post('introduction-create', [IntroductionController::class, 'save']);
+Route::get('introduction/{id}', [IntroductionController::class, 'view']);
+Route::get('introduction/delete/{id}', [IntroductionController::class, 'delete']);
+Route::post('introduction/edit/{id}', [IntroductionController::class, 'edit']);
+
 // cat
 
 //only those have manage_user permission will get access
@@ -46,6 +141,7 @@ Route::get('categories', [CategoryController::class, 'list']);
 Route::post('category-create', [CategoryController::class, 'store']);
 Route::get('category/{id}', [CategoryController::class, 'profile']);
 Route::get('category/delete/{id}', [CategoryController::class, 'delete']);
+
 
 
 //Reviews
