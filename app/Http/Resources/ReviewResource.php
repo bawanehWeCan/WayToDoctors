@@ -21,8 +21,6 @@ class ReviewResource extends JsonResource
             'title'=>$this->title,
             'content'=>$this->content,
             'points'=>$this->points,
-            'user'=>new UserResource( User::findOrFail($this->user_id) ),
-            'supplier_id'=>new UserResource( User::findOrFail($this->supplier_id) ),
             'status'=>$this->status,
 
 

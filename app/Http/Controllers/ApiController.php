@@ -36,6 +36,17 @@ class ApiController extends Controller
 
     }
 
+
+    public function listWithCondition($key,$value)
+    {
+
+        $data =  $this->repositry->allWithCondition($key,$value);
+
+        return $this->returnData( 'data' , $this->resource::collection( $data ), __('Succesfully'));
+
+
+    }
+
     public function pagination( $lenght = 10 )
     {
 
@@ -118,10 +129,10 @@ class ApiController extends Controller
 
     public function update($id,$data){
 
-        $model = $this->repositry->edit( $id,$data );
-
+        $model = $this->repositry->getByID($id);
         if ($model) {
-            return $this->returnData('data', new $this->resource( $model ), __('Get  succesfully'));
+            $model = $this->repositry->edit( $id,$data );
+            return $this->returnData('data', new $this->resource( $model ), __('Updated succesfully'));
         }
 
         return $this->returnError(__('Sorry! Failed to get !'));
