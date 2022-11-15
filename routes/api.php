@@ -22,6 +22,10 @@ use App\Http\Controllers\Api\AppointmentController;
 use App\Http\Controllers\Api\SliderController;
 use App\Http\Controllers\Api\IntroductionController;
 
+use App\Http\Controllers\Api\CardController;
+use App\Http\Controllers\Api\subscriptionController;
+use App\Http\Controllers\Api\PlanController;
+
 use App\Http\Controllers\Api\ResultController;
 use App\Http\Controllers\Api\CountriesController;
 
@@ -148,6 +152,36 @@ Route::get('introduction/{id}', [IntroductionController::class, 'view']);
 Route::get('introduction/delete/{id}', [IntroductionController::class, 'delete']);
 Route::post('introduction/edit/{id}', [IntroductionController::class, 'edit']);
 
+
+
+
+//Plan
+Route::get('plans', [PlanController::class, 'list']);
+Route::post('plan-create', [PlanController::class, 'save']);
+Route::get('plan/{id}', [PlanController::class, 'view']);
+Route::get('plan/delete/{id}', [PlanController::class, 'delete']);
+Route::post('plan/edit/{id}', [PlanController::class, 'edit']);
+
+
+
+//Subscription
+Route::get('subscriptions', [SubscriptionController::class, 'list']);
+Route::post('subscription-create', [SubscriptionController::class, 'save']);
+Route::get('subscription/{id}', [SubscriptionController::class, 'view']);
+Route::get('subscription/delete/{id}', [SubscriptionController::class, 'delete']);
+Route::post('subscription/edit/{id}', [SubscriptionController::class, 'edit']);
+
+
+
+//Card
+Route::get('cards', [CardController::class, 'list']);
+Route::post('card-create', [CardController::class, 'save']);
+Route::get('card/{id}', [CardController::class, 'view']);
+Route::get('card/delete/{id}', [CardController::class, 'delete']);
+Route::post('card/edit/{id}', [CardController::class, 'edit']);
+
+
+
 // cat
 
 //only those have manage_user permission will get access
@@ -206,6 +240,10 @@ Route::get('result/delete/{id}', [ResultController::class, 'delete']);
 
 Route::middleware(['auth:api'])->group(function () {
 
+
+    Route::get('my-subscriptions', [SubscriptionController::class, 'mySubscription']);
+
+    Route::get('my-cards', [CardController::class, 'myCards']);
 
     Route::post('/review/edit/{id}', [ReviewController::class, 'edit']);
     Route::post('review-create', [ReviewController::class, 'save']);
