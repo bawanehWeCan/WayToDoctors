@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\RolesController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\CertificateController;
 use App\Http\Controllers\Api\PermissionController;
 use App\Http\Controllers\Api\ReviewController;
 
@@ -98,3 +99,10 @@ Route::middleware(['auth:api'])->group(function () {
         Route::get('/permission/delete/{id}', [PermissionController::class, 'delete']);
     });
 });
+
+
+
+Route::get('certificates', [CertificateController::class, 'list']);
+Route::post('certificate-create', [CertificateController::class, 'store']);
+Route::get('certificate/{id}', [CertificateController::class, 'profile']);
+Route::get('certificate/delete/{id}', [CertificateController::class, 'delete']);
