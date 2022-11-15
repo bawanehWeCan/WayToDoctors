@@ -19,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','image','phone',
+        'name', 'email', 'password','phone',
     ];
 
     /**
@@ -40,25 +40,25 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function setImageAttribute($value){
-        if ($value){
-            $file = $value;
-            $extension = $file->getClientOriginalExtension(); // getting image extension
-            $filename =time().mt_rand(1000,9999).'.'.$extension;
-            $file->move(public_path('img/users/'), $filename);
-            $this->attributes['image'] =  'img/users/'.$filename;
-        }
-    }
+    // public function setImageAttribute($value){
+    //     if ($value){
+    //         $file = $value;
+    //         $extension = $file->getClientOriginalExtension(); // getting image extension
+    //         $filename =time().mt_rand(1000,9999).'.'.$extension;
+    //         $file->move(public_path('img/users/'), $filename);
+    //         $this->attributes['image'] =  'img/users/'.$filename;
+    //     }
+    // }
 
-    public function setCoverAttribute($value){
-        if ($value){
-            $file = $value;
-            $extension = $file->getClientOriginalExtension(); // getting image extension
-            $filename =time().mt_rand(1000,9999).'.'.$extension;
-            $file->move(public_path('img/users/'), $filename);
-            $this->attributes['cover'] =  'img/users/'.$filename;
-        }
-    }
+    // public function setCoverAttribute($value){
+    //     if ($value){
+    //         $file = $value;
+    //         $extension = $file->getClientOriginalExtension(); // getting image extension
+    //         $filename =time().mt_rand(1000,9999).'.'.$extension;
+    //         $file->move(public_path('img/users/'), $filename);
+    //         $this->attributes['cover'] =  'img/users/'.$filename;
+    //     }
+    // }
 
 
     public function get_roles()
@@ -70,6 +70,7 @@ class User extends Authenticatable
 
         return $roles;
     }
+
     public function results(){
         return $this->hasMany(Result::class);
     }
@@ -88,22 +89,16 @@ class User extends Authenticatable
 
     public function categories(){
         return $this->morphToMany( Category::class, 'categoryable' );
+
+    public function profile(){
+        return $this->hasOne(Profile::class);
+
     }
 
-    public function orders(){
-        return $this->hasMany(Order::class);
-    }
-
-    public function address(){
-        return $this->hasMany(Address::class);
-    }
-
-    public function wallet(){
-        return $this->hasOne(Wallet::class);
-    }
-
-    public function transactions(){
-        return $this->hasMany(Transaction::class);
+    //morph
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable');
     }
 
 }
