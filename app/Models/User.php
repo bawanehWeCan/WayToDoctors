@@ -75,8 +75,24 @@ class User extends Authenticatable
         return $this->hasMany(Result::class);
     }
 
+    public function products(){
+        return $this->hasMany(Product::class);
+    }
+
+    public function subscriptions(){
+        return $this->hasMany(Subscription::class);
+    }
+
+    public function cards(){
+        return $this->hasMany(Card::class);
+    }
+
+    public function categories(){
+        return $this->morphToMany( Category::class, 'categoryable' );
+
     public function profile(){
         return $this->hasOne(Profile::class);
+
     }
 
     //morph

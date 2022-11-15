@@ -58,6 +58,12 @@ class AuthController extends Controller
                 'token' => $accessToken,
                 'user' => UserResource::make(Auth::user())
             ]]);
+        }
+
+        return response(['status' => true, 'code' => 200, 'msg' => __('Log in success'), 'data' => [
+            'token' => $accessToken,
+            'user' => UserResource::make(Auth::user())
+        ]]);
 
     }
 
