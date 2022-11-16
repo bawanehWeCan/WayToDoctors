@@ -12,10 +12,10 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use App\Repositories\UserRepository;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\ProfileUpdateRequest;
 use App\Http\Requests\PasswordChangeRequest;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -54,17 +54,10 @@ class AuthController extends Controller
         $accessToken = Auth::user()->createToken('authToken')->accessToken;
 
 
-            return response(['status' => true, 'code' => 200, 'msg' => __('Log in success'), 'data' => [
-                'token' => $accessToken,
-                'user' => UserResource::make(Auth::user())
-            ]]);
-        }
-
         return response(['status' => true, 'code' => 200, 'msg' => __('Log in success'), 'data' => [
             'token' => $accessToken,
             'user' => UserResource::make(Auth::user())
         ]]);
-
     }
 
     public function store(UserRequest $request)
@@ -73,7 +66,7 @@ class AuthController extends Controller
             DB::beginTransaction();
             $user = $this->userRepositry->save($request);
             if ($request->has('image')) {
-                $this->userRepositry->insertImage($request->image,$user);
+                $this->userRepositry->insertImage($request->image, $user);
             }
 
 
@@ -107,14 +100,11 @@ class AuthController extends Controller
                 // return $this->returnData( 'user', UserResource::make($user), '');
 
 
-                    return response(['status' => true, 'code' => 200, 'msg' => __('User created succesfully'), 'data' => [
-                        'token' => $accessToken,
-                        'user' => UserResource::make(Auth::user())
-                    ]]);
-
+                return response(['status' => true, 'code' => 200, 'msg' => __('User created succesfully'), 'data' => [
+                    'token' => $accessToken,
+                    'user' => UserResource::make(Auth::user())
+                ]]);
             }
-
-
         } catch (\Exception $e) {
             DB::rollback();
             return $this->returnError('Sorry! Failed in creating user');
@@ -233,12 +223,12 @@ class AuthController extends Controller
             }
 
 
-            $this->userRepositry->edit($request,$user);
+            $this->userRepositry->edit($request, $user);
 
             if ($request->has('image') && $user->has('image')) {
-                $image = $this->userRepositry->insertImage($request->image,$user,true);
-            }elseif ($request->has('image')) {
-                $image = $this->userRepositry->insertImage($request->image,$user);
+                $image = $this->userRepositry->insertImage($request->image, $user, true);
+            } elseif ($request->has('image')) {
+                $image = $this->userRepositry->insertImage($request->image, $user);
             }
 
             DB::commit();
@@ -260,7 +250,4 @@ class AuthController extends Controller
 
         return $this->returnSuccessMessage('Logged out succesfully!');
     }
-
-
-
 }

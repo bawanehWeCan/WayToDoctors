@@ -2,19 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\ApiController;
 use App\Models\Certificate;
-<<<<<<< HEAD
-use App\Repositories\Repository;
-use App\Http\Requests\CertificateRequest;
-use App\Http\Resources\CertificateResource;
-=======
 use Illuminate\Http\Request;
 use App\Repositories\Repository;
 use App\Http\Requests\CertificateRequest;
-use App\Http\Resources\CertificateResource;
-use App\Http\Controllers\Controller;
->>>>>>> 0d40d51a2bfd20aaf60acc0a251877342c6779ea
-use App\Http\Controllers\ApiController;
 
 class CertificateController extends ApiController
 {
@@ -25,12 +17,6 @@ class CertificateController extends ApiController
         $this->repositry =  new Repository($this->model);
     }
 
-<<<<<<< HEAD
-    public function save( CertificateRequest $request ){
-        return $this->store( $request->all() );
-    }
-
-=======
     public function save( Request $request ){
         return $this->store( $request->all() );
     }
@@ -41,5 +27,4 @@ class CertificateController extends ApiController
         return $this->update($id,$request->all());
 
     }
->>>>>>> 0d40d51a2bfd20aaf60acc0a251877342c6779ea
 }

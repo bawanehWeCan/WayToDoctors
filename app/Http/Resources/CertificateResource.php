@@ -14,9 +14,6 @@ class CertificateResource extends JsonResource
      */
     public function toArray($request)
     {
-<<<<<<< HEAD
-        return parent::toArray($request);
-=======
         return [
 
             'id'=>$this->id,
@@ -27,6 +24,5 @@ class CertificateResource extends JsonResource
             'doctor'=>new DoctorResource($this->doctor),
 
         ];
->>>>>>> 0d40d51a2bfd20aaf60acc0a251877342c6779ea
     }
 }
