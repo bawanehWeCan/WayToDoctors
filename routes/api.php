@@ -29,6 +29,9 @@ use App\Http\Controllers\Api\PlanController;
 use App\Http\Controllers\Api\ResultController;
 use App\Http\Controllers\Api\CountriesController;
 
+use App\Http\Controllers\Api\RelativeController;
+use App\Http\Controllers\Api\IdentityController;
+use App\Http\Controllers\Api\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,10 +69,6 @@ Route::post('clinic/edit/{id}', [ClinicController::class, 'edit']);
 
 
 //Doctor
-
-
-
-
 Route::get('doctors', [DoctorController::class, 'list']);
 Route::post('doctor-create', [DoctorController::class, 'save']);
 Route::get('doctor/{id}', [DoctorController::class, 'view']);
@@ -182,17 +181,36 @@ Route::get('card/{id}', [CardController::class, 'view']);
 Route::get('card/delete/{id}', [CardController::class, 'delete']);
 Route::post('card/edit/{id}', [CardController::class, 'edit']);
 
+//Relative
+Route::get('relatives', [RelativeController::class, 'list']);
+Route::post('relative-create', [RelativeController::class, 'save']);
+Route::get('relative/{id}', [RelativeController::class, 'view']);
+Route::get('relative/delete/{id}', [RelativeController::class, 'delete']);
+Route::post('relative/edit/{id}', [RelativeController::class, 'edit']);
+
+
+//Identity
+Route::get('identities', [IdentityController::class, 'list']);
+Route::post('identity-create', [IdentityController::class, 'save']);
+Route::get('identity/{id}', [IdentityController::class, 'view']);
+Route::get('identity/delete/{id}', [IdentityController::class, 'delete']);
+Route::post('identity/edit/{id}', [IdentityController::class, 'edit']);
+
+//Home
+Route::get('home-page', [HomeController::class, 'homePage']);
+
 
 
 // cat
 
 //only those have manage_user permission will get access
 Route::get('categories', [CategoryController::class, 'list']);
-Route::post('category-create', [CategoryController::class, 'store']);
-Route::get('category/{id}', [CategoryController::class, 'profile']);
+Route::post('category-create', [CategoryController::class, 'save']);
+Route::get('category/{id}', [CategoryController::class, 'view']);
+Route::post('category/edit/{id}', [CategoryController::class, 'edit']);
 Route::get('category/delete/{id}', [CategoryController::class, 'delete']);
 
-
+Route::get('categories-by-type/{type}', [CategoryController::class, 'getCategoryByType']);
 
 //Reviews
 

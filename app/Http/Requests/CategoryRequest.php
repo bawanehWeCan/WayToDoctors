@@ -27,7 +27,8 @@ class CategoryRequest extends FormRequest
         return [
             'name' => 'required | string ',
             'image' => 'required  ',
-            
+            'type' => 'required'
+
         ];
     }
     protected function failedValidation(Validator $validator)
@@ -35,7 +36,7 @@ class CategoryRequest extends FormRequest
         $errors = (new ValidationException($validator))->errors();
 
         throw new HttpResponseException(
-            
+
             $this->returnValidationError($validator,422)
         );
     }

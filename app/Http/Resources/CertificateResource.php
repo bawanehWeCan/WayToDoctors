@@ -19,7 +19,7 @@ class CertificateResource extends JsonResource
             'id'=>$this->id,
             'title'=>$this->title,
             'image'=>$this->image,
-            'file'=>$this->file,
+            'file'=>(string)$this->file,
             // 'doctor_id'=>$this->doctor_id,
             'doctor'=>new DoctorResource($this->doctor),
 

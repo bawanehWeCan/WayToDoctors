@@ -13,7 +13,7 @@ trait ResponseTrait
      * @param string $msg
      * @return Response
      */
-    public function returnError($msg) 
+    public function returnError($msg)
     {
         return response()->json([
             'status' => false,
@@ -61,7 +61,7 @@ trait ResponseTrait
      * @param Validator $validator
      * @return Response
      */
-    public function returnValidationError($validator, $code = null)
+    public function returnValidationError($validator, $code = null, $errors = null)
     {
         if ($code == null) {
             $code = $this->returnCodeAccordingToInput($validator);
@@ -71,6 +71,7 @@ trait ResponseTrait
             'status' => false,
             'code' => $this->returnCodeAccordingToInput($validator),
             'msg' => __('Please check the following errors'),
+            'errors'=>$errors,
         ], Response::HTTP_INTERNAL_SERVER_ERROR);
     }
 

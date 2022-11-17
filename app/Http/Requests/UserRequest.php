@@ -33,7 +33,7 @@ class UserRequest extends FormRequest
             'name' => 'required | string ',
             'email' => 'required|email|unique:users',
             'password' => 'required ',
-            'phone' => 'required|unique:users',
+            // 'phone' => 'required|unique:users',
         ];
     }
     protected function failedValidation(Validator $validator)
@@ -41,8 +41,8 @@ class UserRequest extends FormRequest
         $errors = (new ValidationException($validator))->errors();
 
         throw new HttpResponseException(
-            
-            $this->returnValidationError($validator,422)
+
+            $this->returnValidationError($validator,422,(new ValidationException($validator))->errors())
         );
     }
 }

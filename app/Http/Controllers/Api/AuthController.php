@@ -60,21 +60,21 @@ class AuthController extends Controller
             ]]);
         }
 
-        return response(['status' => true, 'code' => 200, 'msg' => __('Log in success'), 'data' => [
-            'token' => $accessToken,
-            'user' => UserResource::make(Auth::user())
-        ]]);
+    //     return response(['status' => true, 'code' => 200, 'msg' => __('Log in success'), 'data' => [
+    //         'token' => $accessToken,
+    //         'user' => UserResource::make(Auth::user())
+    //     ]]);
 
-    }
+    // }
 
     public function store(UserRequest $request)
     {
         try {
             DB::beginTransaction();
             $user = $this->userRepositry->save($request);
-            if ($request->has('image')) {
-                $this->userRepositry->insertImage($request->image,$user);
-            }
+            // if ($request->has('image')) {
+            //     $this->userRepositry->insertImage($request->image,$user);
+            // }
 
 
 
@@ -98,6 +98,8 @@ class AuthController extends Controller
             // $response = curl_exec($curl);
 
             // curl_close($curl);
+
+
             DB::commit();
             Auth::login($user);
 
@@ -116,6 +118,7 @@ class AuthController extends Controller
 
 
         } catch (\Exception $e) {
+            dd($e);
             DB::rollback();
             return $this->returnError('Sorry! Failed in creating user');
         }
