@@ -16,20 +16,9 @@ class ResultResource extends JsonResource
     {
         return [
             'id'=>$this->id,
-            'question'=>[
-                'id'=>$this->question->id,
-                'question'=>$this->question->question,
-                'section'=>$this->question->section->name,
-                'condition'=>$this->question->condition,
-                'result'=>$this->result,
-                'answer'=>[
-                    'id'=>$this->answer->id,
-                    'question'=>$this->answer->answer,
-                    'question_id'=>$this->answer->question_id,
-                    'correct'=>$this->answer->correct,
-                ]
-            ],
-            'user'=>new UserResource($this->user),
+            'question'=>$this->question->question,
+            'answer'=>$this->answer->answer,
+            'is_correct'=>$this->answer->correct
         ];
     }
 }

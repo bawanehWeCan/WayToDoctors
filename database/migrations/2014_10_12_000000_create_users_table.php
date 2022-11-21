@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('phone')->unique()->nullable();
             $table->string('step')->default(1);
+            $table->string('question_number')->default(0);
             $table->string('active')->default(0);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

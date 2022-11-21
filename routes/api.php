@@ -253,7 +253,7 @@ Route::get('answer/delete/{id}', [AnswerController::class, 'delete']);
 
 ############################### result ################################
 Route::get('results', [ResultController::class, 'list']);
-Route::post('result-create', [ResultController::class, 'save']);
+
 Route::get('result/{id}', [ResultController::class, 'view']);
 Route::post('result/update/{id}', [ResultController::class, 'edit']);
 Route::get('result/delete/{id}', [ResultController::class, 'delete']);
@@ -261,9 +261,15 @@ Route::get('result/delete/{id}', [ResultController::class, 'delete']);
 Route::middleware(['auth:api'])->group(function () {
 
 
+    Route::post('result-create', [ResultController::class, 'save']);
+
+
     Route::get('my-subscriptions', [SubscriptionController::class, 'mySubscription']);
 
     Route::get('my-cards', [CardController::class, 'myCards']);
+
+
+    Route::get('my-results', [ResultController::class, 'myResult']);
 
     Route::post('/review/edit/{id}', [ReviewController::class, 'edit']);
     Route::post('review-create', [ReviewController::class, 'save']);

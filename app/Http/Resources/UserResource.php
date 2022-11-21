@@ -31,6 +31,7 @@ class UserResource extends JsonResource
             'status'        => $this->profile->status??NULL,
             'image'        => (string)$this->image??null,
 
+
         ];
     }
 }

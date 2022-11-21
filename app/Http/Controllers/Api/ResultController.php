@@ -9,10 +9,14 @@ use App\Repositories\Repository;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ResultRequest;
 use App\Http\Resources\ResultResource;
+use App\Http\Resources\MyResultResource;
+use App\Http\Resources\SectionResource;
 use App\Http\Controllers\ApiController;
 use App\Models\Answer;
 use App\Models\Question;
 use App\Models\User;
+use App\Models\Section;
+use Auth;
 
 class ResultController extends ApiController
 {
@@ -31,7 +35,20 @@ class ResultController extends ApiController
             return $this->returnError(__("Sorry question is not exist"));
         }
         if($this->checkQuestion($request)){
+            $request['user_id'] = Auth::user()->id;
+            $request['section_id'] = $question->section->id;
+            $user=Auth::user();
+
+            //dd( $user );
+            //$user->step=$request->step_id;
+            $user->step=$question->section->id;
+            $user->question_number=$question->id;
+            $user->save();
             return $this->store( $request->all() );
+
+
+
+
         }else{
             return $this->returnError(__("Sorry This Answer is not allowed for this question"));
         }
@@ -53,11 +70,18 @@ class ResultController extends ApiController
 
     public function checkQuestion($request)
     {
-        $user = User::find($request->user_id);
-        $userResult = $this->model->where('question_id',$request->question_id)->whereBelongsTo($user)->first();
-        $questionId = Answer::find($request->answer_id)->question->id;
-        if(!empty($request->answer_id)){
-                return $request->question_id == $questionId && empty($userResult);
-        }
+
+        $userResult = $this->model->where('question_id',$request->question_id)->where('user_id', Auth::user()->id)->first();
+
+        return empty($userResult);
+
+    }
+
+
+    public function myResult(ResultRequest $request){
+
+        //$data = $this->model->where('user_id', Auth::user()->id)->get();
+        $data = Section::all();
+        return $this->returnData('data',  MyResultResource::collection( $data ), __('Get  succesfully'));
     }
 }
