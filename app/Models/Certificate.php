@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Certificate extends Model
 {
     use HasFactory;
+
     protected $guarded=[];
 
     public function doctor(){
@@ -33,4 +34,5 @@ class Certificate extends Model
             $this->attributes['file'] =  'file/'.$filename;
         }
     }
+
 }

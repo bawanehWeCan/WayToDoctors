@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\ApiController;
 use App\Models\Certificate;
 use Illuminate\Http\Request;
 use App\Repositories\Repository;
 use App\Http\Requests\CertificateRequest;
-use App\Http\Resources\CertificateResource;
-use App\Http\Controllers\Controller;
-use App\Http\Controllers\ApiController;
 
 class CertificateController extends ApiController
 {
