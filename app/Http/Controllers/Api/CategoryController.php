@@ -27,6 +27,13 @@ class CategoryController extends ApiController
         return $this->store( $request->all() );
     }
 
+    public function edit($id,Request $request){
+
+
+        return $this->update($id,$request->all());
+
+    }
+
     public function addToBlog( Request $request, $blog_id ){
 
 
@@ -98,6 +105,10 @@ class CategoryController extends ApiController
 
        }
 
+     public function getCategoryByType($type){
+
+        return $this->listWithCondition('type',$type);
+     }
 
 
 }

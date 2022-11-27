@@ -22,4 +22,7 @@ class Result extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+    public function scopeCurrent( $query, $id ){
+        return $query->where( 'question_id', $id );
+    }
 }

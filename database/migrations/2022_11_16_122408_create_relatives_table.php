@@ -13,11 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('answers', function (Blueprint $table) {
+        Schema::create('relatives', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('question_id')->constrained('questions')->cascadeOnDelete();
-            $table->text('answer')->nullable();
-            $table->integer('correct')->default(0);
+            $table->text('full_name');
+            $table->text('relation');
+            $table->text('phone_number');
+            $table->text('address');
+            $table->text('career');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }
@@ -29,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('answers');
+        Schema::dropIfExists('relatives');
     }
 };
