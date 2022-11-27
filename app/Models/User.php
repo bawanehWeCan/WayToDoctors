@@ -90,6 +90,7 @@ class User extends Authenticatable
     public function categories(){
         return $this->morphToMany( Category::class, 'categoryable' );
     }
+
     public function profile(){
         return $this->hasOne(Profile::class);
 
