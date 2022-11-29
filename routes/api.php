@@ -310,7 +310,7 @@ Route::middleware(['auth:api'])->group(function () {
 
 
 Route::get('certificates', [CertificateController::class, 'list']);
-Route::post('certificate-create', [CertificateController::class, 'store']);
+Route::post('certificate-create', [CertificateController::class, 'save']);
 Route::get('certificate/{id}', [CertificateController::class, 'profile']);
 Route::get('certificate/delete/{id}', [CertificateController::class, 'delete']);
 Route::get('country-list', [CountriesController::class, 'getCountries']);
