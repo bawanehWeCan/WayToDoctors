@@ -19,7 +19,8 @@ class IdentityResource extends JsonResource
             'image_front'=>$this->image_front,
             'image_back'=>$this->image_back,
             'status'=>$this->status,
-            'user'=>new UserResource($this->user),
+            // 'user'=>new UserResource($this->user),
+            'user_id'=>$this->user_id,
         ];
     }
 }
