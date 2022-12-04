@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\ApiController;
 use App\Models\Certificate;
+use App\Http\Resources\CertificateResource;
 use Illuminate\Http\Request;
 use App\Repositories\Repository;
 use App\Http\Requests\CertificateRequest;
@@ -27,4 +28,5 @@ class CertificateController extends ApiController
         return $this->update($id,$request->all());
 
     }
+
 }

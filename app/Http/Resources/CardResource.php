@@ -22,7 +22,8 @@ class CardResource extends JsonResource
             'expire_month'=>$this->expire_month,
             'expire_year'=>$this->expire_year,
             'cvv'=>$this->CVV,
-            'user'=>new UserResource($this->user)
+            'user_id'=>$this->user_id,
+            // 'user'=>new UserResource($this->user)
         ];
     }
 }

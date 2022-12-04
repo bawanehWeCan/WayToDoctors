@@ -23,7 +23,7 @@ use App\Http\Controllers\Api\SliderController;
 use App\Http\Controllers\Api\IntroductionController;
 
 use App\Http\Controllers\Api\CardController;
-use App\Http\Controllers\Api\subscriptionController;
+use App\Http\Controllers\Api\SubscriptionController;
 use App\Http\Controllers\Api\PlanController;
 
 use App\Http\Controllers\Api\ResultController;
@@ -84,7 +84,7 @@ Route::post( 'doctor/add-category/{doctor_id}', [ CategoryController::class, 'ad
 
 Route::get( 'doctors/get-category', [ CategoryController::class, 'getCategoriesForDoctors' ]);
 
-Route::get( 'doctors/get-doctors/{category_id}', [ CategoryController::class, 'getDoctors' ]);
+Route::get( 'get-doctors/{category_id}', [ CategoryController::class, 'getDoctors' ]);
 
 
 
@@ -309,8 +309,8 @@ Route::middleware(['auth:api'])->group(function () {
 
 
 
-Route::get('certificates', [CertificateController::class, 'list']);
-Route::post('certificate-create', [CertificateController::class, 'store']);
-Route::get('certificate/{id}', [CertificateController::class, 'profile']);
-Route::get('certificate/delete/{id}', [CertificateController::class, 'delete']);
+// Route::get('certificates', [CertificateController::class, 'list']);
+// Route::post('certificate-create', [CertificateController::class, 'save']);
+// Route::get('certificate/{id}', [CertificateController::class, 'profile']);
+// Route::get('certificate/delete/{id}', [CertificateController::class, 'delete']);
 Route::get('country-list', [CountriesController::class, 'getCountries']);
