@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('doctors', function (Blueprint $table) {
             $table->id();
-            $table->text('name');
+            $table->json('name');
             $table->text('image');
-            $table->text('address');
+            $table->json('address');
             $table->double('experience');
-            $table->text('description');
+            $table->json('description');
             $table->text('phone');
             $table->double('lat');
             $table->double('long');

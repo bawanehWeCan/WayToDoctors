@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('plans', function (Blueprint $table) {
             $table->id();
-            $table->text('name');
+            $table->json('name');
             $table->text('details');
             $table->text('price');
             $table->timestamps();

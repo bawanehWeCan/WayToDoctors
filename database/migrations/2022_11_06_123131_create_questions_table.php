@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('section_id')->constrained('sections')->cascadeOnDelete();
-            $table->text('question')->nullable();
+            $table->json('question')->nullable();
             $table->integer('condition');
             $table->timestamps();
         });
