@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('studies', function (Blueprint $table) {
             $table->id();
-            $table->text('title');
+            $table->json('title');
             $table->text('image');
             $table->text('file');
             $table->integer('doctor_id');

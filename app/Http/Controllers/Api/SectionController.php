@@ -22,13 +22,13 @@ class SectionController extends ApiController
         $this->repositry =  new Repository($this->model);
     }
 
-    public function save( SectionRequest $request ){
+    public function save( Request $request ){
 
         return $this->store( $request->all() );
 
     }
 
-    public function edit( $id,SectionRequest $request){
+    public function edit( $id,Request $request){
         return $this->update($id,$request->all() );
 
     }

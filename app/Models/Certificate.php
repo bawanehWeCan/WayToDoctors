@@ -4,12 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
 class Certificate extends Model
 {
-    use HasFactory;
+    use HasFactory, HasTranslations;
 
     protected $guarded=[];
+    public $translatable = ['title'];
 
     public function doctor(){
         return $this->belongsTo(Doctor::class);

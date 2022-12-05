@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('introductions', function (Blueprint $table) {
             $table->id();
-            $table->text('title');
+            $table->json('title');
             $table->text('body');
             // $table->text('image');
             $table->timestamps();

@@ -16,7 +16,9 @@ class ChangeLang
      */
     public function handle(Request $request, Closure $next)
     {
-        
+
+        $lang = ($request->hasHeader('X-localization')) ? $request->header('X-localization') : 'en';
+        app()->setlocale($lang);
         return $next($request);
     }
 }
