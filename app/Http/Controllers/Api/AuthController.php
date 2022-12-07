@@ -198,7 +198,7 @@ class AuthController extends Controller
     {
         $user = User::find($id);
 
-        $otp = $this->sendOTP($request->phone);
+        $otp = $this->sendOTP($user->phone);
 
         $user->otp = $otp;
         $user->save();
