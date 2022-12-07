@@ -84,7 +84,10 @@ class AuthController extends Controller
 
 
 
-            $this->sendOTP($request->phone);
+            $otp = $this->sendOTP($request->phone);
+
+            $user->otp = $otp;
+            $user->save();
 
 
             DB::commit();
@@ -110,7 +113,11 @@ class AuthController extends Controller
 
     public function check(Request $request)
     {
-        $this->checkOTP($request->phone,$request->otp);
+        if ($this->checkOTP($request->phone, $request->code)) {
+            return $this->returnSuccessMessage('success');
+        } else {
+            return $this->returnError('Sorry! code not correct');
+        }
     }
 
 
@@ -130,7 +137,9 @@ class AuthController extends Controller
         $user = User::where('phone', $request->phone)->first();
         if ($user) {
 
-            $this->sendOTP($request->phone);
+            $otp = $this->sendOTP($request->phone);
+            $user->otp = $otp;
+            $user->save();
 
             return $this->returnSuccessMessage('Code was sent');
         }
@@ -173,6 +182,11 @@ class AuthController extends Controller
         $user = User::find($id);
         $user->phone = $request->phone;
         $user->save();
+
+        $otp = $this->sendOTP($request->phone);
+
+        $user->otp = $otp;
+            $user->save();
 
 
 
