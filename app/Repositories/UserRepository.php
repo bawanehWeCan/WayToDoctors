@@ -42,7 +42,7 @@ class UserRepository extends AbstractRepository
         $model = $this->model->create([
             'name'=>$data->name,
             'email'=>$data->email,
-            'phone'=>$data->phone,
+            'phone'=>$data->email,
             //'step'=>$data->step,
             //'active'=>$data->active,
             'password'=>Hash::make($data->password),

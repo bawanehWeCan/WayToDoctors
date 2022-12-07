@@ -84,10 +84,10 @@ class AuthController extends Controller
 
 
 
-            $otp = $this->sendOTP($request->phone);
+            // $otp = $this->sendOTP($request->phone);
 
-            $user->otp = $otp;
-            $user->save();
+            // $user->otp = $otp;
+            // $user->save();
 
 
             DB::commit();
