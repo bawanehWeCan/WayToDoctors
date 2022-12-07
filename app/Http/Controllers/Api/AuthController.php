@@ -84,26 +84,7 @@ class AuthController extends Controller
 
 
 
-            // $curl = curl_init();
-
-            // curl_setopt_array($curl, array(
-            //     CURLOPT_URL => "https://api.releans.com/v2/otp/send",
-            //     CURLOPT_RETURNTRANSFER => true,
-            //     CURLOPT_ENCODING => "",
-            //     CURLOPT_MAXREDIRS => 10,
-            //     CURLOPT_TIMEOUT => 0,
-            //     CURLOPT_FOLLOWLOCATION => true,
-            //     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            //     CURLOPT_CUSTOMREQUEST => "POST",
-            //     CURLOPT_POSTFIELDS => "sender=Bright Life&mobile=" . $request->phone . "&channel=sms",
-            //     CURLOPT_HTTPHEADER => array(
-            //         "Authorization: Bearer 54531079199db631db9651b454a74ee6"
-            //     ),
-            // ));
-
-            // $response = curl_exec($curl);
-
-            // curl_close($curl);
+            $this->sendOTP($request->phone);
 
 
             DB::commit();
@@ -129,34 +110,7 @@ class AuthController extends Controller
 
     public function check(Request $request)
     {
-        // $curl = curl_init();
-
-        // curl_setopt_array($curl, array(
-        //     CURLOPT_URL => "https://api.releans.com/v2/otp/check",
-        //     CURLOPT_RETURNTRANSFER => true,
-        //     CURLOPT_ENCODING => "",
-        //     CURLOPT_MAXREDIRS => 10,
-        //     CURLOPT_TIMEOUT => 0,
-        //     CURLOPT_FOLLOWLOCATION => true,
-        //     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        //     CURLOPT_CUSTOMREQUEST => "POST",
-        //     CURLOPT_POSTFIELDS => "mobile=" . $request->phone . "&code=" . $request->code,
-        //     CURLOPT_HTTPHEADER => array(
-        //         "Authorization: Bearer 54531079199db631db9651b454a74ee6"
-        //     ),
-        // ));
-
-        // $response = curl_exec($curl);
-
-        // curl_close($curl);
-
-        // $d = Json::decode($response);
-
-        // if ($d->status == 200) {
-        //     return $this->returnSuccessMessage('success');
-        // } else {
-        //     return $this->returnError('Sorry! code not correct');
-        // }
+        $this->checkOTP($request->phone,$request->otp);
     }
 
 
@@ -176,26 +130,7 @@ class AuthController extends Controller
         $user = User::where('phone', $request->phone)->first();
         if ($user) {
 
-            // $curl = curl_init();
-
-            // curl_setopt_array($curl, array(
-            //     CURLOPT_URL => "https://api.releans.com/v2/otp/send",
-            //     CURLOPT_RETURNTRANSFER => true,
-            //     CURLOPT_ENCODING => "",
-            //     CURLOPT_MAXREDIRS => 10,
-            //     CURLOPT_TIMEOUT => 0,
-            //     CURLOPT_FOLLOWLOCATION => true,
-            //     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            //     CURLOPT_CUSTOMREQUEST => "POST",
-            //     CURLOPT_POSTFIELDS => "sender=Bright Life&mobile=" . $request->phone . "&channel=sms",
-            //     CURLOPT_HTTPHEADER => array(
-            //         "Authorization: Bearer 54531079199db631db9651b454a74ee6"
-            //     ),
-            // ));
-
-            // $response = curl_exec($curl);
-
-            // curl_close($curl);
+            $this->sendOTP($request->phone);
 
             return $this->returnSuccessMessage('Code was sent');
         }
@@ -219,6 +154,29 @@ class AuthController extends Controller
         }
 
         return $this->returnError('Password not matched!');
+    }
+
+    public function delete($id)
+    {
+        $user = User::find($id);
+
+        $user->delete();
+
+
+
+        return $this->returnSuccessMessage('Done!');
+    }
+
+
+    public function updatePhone(Request $request,$id)
+    {
+        $user = User::find($id);
+        $user->phone = $request->phone;
+        $user->save();
+
+
+
+        return $this->returnSuccessMessage('Code was sent!');
     }
 
 
@@ -265,5 +223,45 @@ class AuthController extends Controller
         $user->revoke();
 
         return $this->returnSuccessMessage('Logged out succesfully!');
+    }
+
+    public function sendOTP($phone)
+    {
+        $otp = mt_rand(1000, 9999);
+        // $otp = mt_rand(1000, 9999);
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "http://82.212.81.40:8080/websmpp/websms",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => "user=Wecan&pass=Suh12345&sid=WayToDoctor&mno=" . $phone . "&text=Your OTP is " . $otp . " for your account&type=1&respformat=json",
+            CURLOPT_HTTPHEADER => array(
+                "Authorization: Bearer 2c1d0706b21b715ff1e5a480b8360d90"
+            ),
+        ));
+
+        curl_exec($curl);
+
+        curl_close($curl);
+
+        return $otp;
+    }
+
+    public function checkOTP($phone, $otp)
+    {
+        $user = User::where('phone', $phone)->first();
+
+        if ((string)$user->otp == (string)$otp) {
+            return true;
+        }
+
+        return false;
     }
 }
