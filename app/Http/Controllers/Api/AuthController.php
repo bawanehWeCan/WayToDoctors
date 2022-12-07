@@ -227,7 +227,7 @@ class AuthController extends Controller
 
     public function sendOTP($phone)
     {
-        $otp = mt_rand(1000, 9999);
+        $otp = 5555;
         // $otp = mt_rand(1000, 9999);
 
         $curl = curl_init();
