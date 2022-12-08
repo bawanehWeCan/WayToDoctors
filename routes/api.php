@@ -33,6 +33,8 @@ use App\Http\Controllers\Api\RelativeController;
 use App\Http\Controllers\Api\IdentityController;
 use App\Http\Controllers\Api\HomeController;
 
+use App\Http\Middleware\ChangeLang;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
