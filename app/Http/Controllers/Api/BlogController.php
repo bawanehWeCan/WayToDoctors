@@ -46,4 +46,12 @@ class BlogController extends ApiController
 
 
        }
+
+       public function randomBlogs(){
+
+
+        $data=Blog::inRandomOrder()->limit(5)->get();
+        return $this->returnData('data',  BlogResource::collection( $data ), __('Get  succesfully'));
+
+       }
 }

@@ -127,6 +127,8 @@ Route::post( 'blog/add-category/{blog_id}', [ CategoryController::class, 'addToB
 
 Route::get( 'blog/get-blogs/{category_id}', [ CategoryController::class, 'getBlogs' ]);
 
+Route::get('random-blogs', [BlogController::class, 'randomBlogs']);
+
 
 ############################### question ################################
 Route::get('questions', [QuestionController::class, 'list']);
