@@ -819,6 +819,7 @@ class ComposerStaticInit616415153d46cf31155399917f6be504
         'App\\Repositories\\AbstractRepository' => __DIR__ . '/../..' . '/app/Repositories/AbstractRepository.php',
         'App\\Repositories\\Repository' => __DIR__ . '/../..' . '/app/Repositories/Repository.php',
         'App\\Repositories\\UserRepository' => __DIR__ . '/../..' . '/app/Repositories/UserRepository.php',
+        'App\\Traits\\NotificationTrait' => __DIR__ . '/../..' . '/app/Traits/NotificationTrait.php',
         'App\\Traits\\ResponseTrait' => __DIR__ . '/../..' . '/app/Traits/ResponseTrait.php',
         'App\\View\\Components\\AppLayout' => __DIR__ . '/../..' . '/app/View/Components/AppLayout.php',
         'App\\View\\Components\\GuestLayout' => __DIR__ . '/../..' . '/app/View/Components/GuestLayout.php',

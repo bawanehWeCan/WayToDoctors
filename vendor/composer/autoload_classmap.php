@@ -132,6 +132,7 @@ return array(
     'App\\Repositories\\AbstractRepository' => $baseDir . '/app/Repositories/AbstractRepository.php',
     'App\\Repositories\\Repository' => $baseDir . '/app/Repositories/Repository.php',
     'App\\Repositories\\UserRepository' => $baseDir . '/app/Repositories/UserRepository.php',
+    'App\\Traits\\NotificationTrait' => $baseDir . '/app/Traits/NotificationTrait.php',
     'App\\Traits\\ResponseTrait' => $baseDir . '/app/Traits/ResponseTrait.php',
     'App\\View\\Components\\AppLayout' => $baseDir . '/app/View/Components/AppLayout.php',
     'App\\View\\Components\\GuestLayout' => $baseDir . '/app/View/Components/GuestLayout.php',

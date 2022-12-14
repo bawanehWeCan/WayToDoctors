@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Blog;
 use App\Models\Category;
+use App\Models\Notification;
+use App\Models\User;
 use App\Http\Resources\ListsResource;
 use Illuminate\Http\Request;
 use App\Repositories\Repository;
@@ -12,10 +14,11 @@ use App\Http\Resources\BlogResource;
 use App\Http\Resources\CategoryResource;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ApiController;
+use App\Traits\NotificationTrait;
 
 class BlogController extends ApiController
 {
-
+    use NotificationTrait;
     public function __construct()
     {
         $this->resource = BlogResource::class;
@@ -24,7 +27,17 @@ class BlogController extends ApiController
     }
 
     public function save( Request $request ){
-        return $this->store( $request->all() );
+
+        $blog = $this->repositry->save($request->all());
+
+        $FcmToken = User::whereNotNull('device_token')->pluck('device_token')->all();
+
+        $this->send('تم إضافة مدونة جديدة','مرحبا ',$FcmToken,true);
+
+
+        return $this->returnSuccessMessage(__('The notification has been sent successfully!'));
+
+
     }
 
     public function edit($id,Request $request){
