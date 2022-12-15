@@ -196,6 +196,12 @@ Route::get('appointments-next', [AppointmentController::class, 'nextAppointmentL
 Route::get('appointments-finished', [AppointmentController::class, 'finishedAppointmentList']);
 Route::get('appointments-canceled', [AppointmentController::class, 'canceledAppointmentList']);
 
+Route::get('my-next/{user_id}', [AppointmentController::class, 'myNextAppointments']);
+Route::get('my-finished/{user_id}', [AppointmentController::class, 'myFinishedAppointments']);
+Route::get('my-canceled/{user_id}', [AppointmentController::class, 'myCanceledAppointments']);
+Route::get('my-appointments/{user_id}', [AppointmentController::class, 'myAppointments']);
+
+
 //Slider
 Route::get('sliders', [SliderController::class, 'list']);
 Route::post('slider-create', [SliderController::class, 'save']);

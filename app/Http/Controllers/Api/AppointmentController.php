@@ -92,4 +92,39 @@ class AppointmentController extends ApiController
         return $this->listWithCondition('type','canceled');
     }
 
+    public function myNextAppointments($user_id){
+
+        $user = User::find( $user_id );
+        $data= $user->appointments()->where('type','next')->get();
+
+        return $this->returnData('data',  $this->resource::collection($data ), __('Get  succesfully'));
+
+    }
+
+    public function myFinishedAppointments($user_id){
+
+        $user = User::find( $user_id );
+        $data= $user->appointments()->where('type','finished')->get();
+
+        return $this->returnData('data',  $this->resource::collection($data ), __('Get  succesfully'));
+
+    }
+
+    public function myCanceledAppointments($user_id){
+
+        $user = User::find( $user_id );
+        $data= $user->appointments()->where('type','canceled')->get();
+
+        return $this->returnData('data',  $this->resource::collection($data ), __('Get  succesfully'));
+
+    }
+
+    public function myAppointments($user_id){
+
+        $user = User::find( $user_id );
+
+        return $this->returnData('data',  $this->resource::collection($user->appointments ), __('Get  succesfully'));
+
+    }
+
 }
