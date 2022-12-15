@@ -1,37 +1,34 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\FaqController;
-use App\Http\Controllers\Api\AuthController;
-use App\Http\Controllers\Api\UserController;
-use App\Http\Controllers\Api\RolesController;
 use App\Http\Controllers\Api\AnswerController;
-use App\Http\Controllers\Api\ReviewController;
-use App\Http\Controllers\Api\SectionController;
-use App\Http\Controllers\Api\CategoryController;
-use App\Http\Controllers\Api\QuestionController;
-use App\Http\Controllers\Api\PermissionController;
-
-use App\Http\Controllers\Api\ClinicController;
-use App\Http\Controllers\Api\DoctorController;
-use App\Http\Controllers\Api\BlogController;
-use App\Http\Controllers\Api\StudyController;
-use App\Http\Controllers\Api\CertificateController;
-use App\Http\Controllers\Api\PictureController;
 use App\Http\Controllers\Api\AppointmentController;
-use App\Http\Controllers\Api\SliderController;
-use App\Http\Controllers\Api\IntroductionController;
-
+use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\BlogController;
 use App\Http\Controllers\Api\CardController;
-use App\Http\Controllers\Api\SubscriptionController;
-use App\Http\Controllers\Api\PlanController;
-
-use App\Http\Controllers\Api\ResultController;
+use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\CertificateController;
+use App\Http\Controllers\Api\ClinicController;
 use App\Http\Controllers\Api\CountriesController;
-
-use App\Http\Controllers\Api\RelativeController;
-use App\Http\Controllers\Api\IdentityController;
+use App\Http\Controllers\Api\DoctorController;
+use App\Http\Controllers\Api\FaqController;
 use App\Http\Controllers\Api\HomeController;
+use App\Http\Controllers\Api\IdentityController;
+use App\Http\Controllers\Api\IntroductionController;
+use App\Http\Controllers\Api\PermissionController;
+use App\Http\Controllers\Api\PictureController;
+use App\Http\Controllers\Api\PlanController;
+use App\Http\Controllers\Api\QuestionController;
+use App\Http\Controllers\Api\RelativeController;
+use App\Http\Controllers\Api\ResultController;
+use App\Http\Controllers\Api\ReviewController;
+use App\Http\Controllers\Api\RolesController;
+use App\Http\Controllers\Api\SectionController;
+use App\Http\Controllers\Api\SliderController;
+use App\Http\Controllers\Api\StudyController;
+use App\Http\Controllers\Api\SubscriptionController;
+use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\NotificationController;
+use Illuminate\Support\Facades\Route;
 
 use App\Http\Middleware\ChangeLang;
 
@@ -44,7 +41,7 @@ use App\Http\Middleware\ChangeLang;
 | routes are loaded by the RouteServiceProvider within a group which
 | is assigned the "api" middleware group. Enjoy building your API!
 |
-*/
+ */
 
 //Auth
 Route::post('login', [AuthController::class, 'login']);
@@ -58,6 +55,7 @@ Route::post('/otb-check', [AuthController::class, 'check']);
 Route::post('/password-otb', [AuthController::class, 'password']);
 
 Route::post('change-password', [AuthController::class, 'changePassword']);
+
 
 Route::post('delete-user/{id}', [AuthController::class, 'delete']);
 
@@ -73,14 +71,15 @@ Route::middleware('changeLang')->group(function () {
     // cat
 
     //only those have manage_user permission will get access
+
     Route::get('categories', [CategoryController::class, 'list']);
     Route::post('category-create', [CategoryController::class, 'save']);
     Route::get('category/{id}', [CategoryController::class, 'view']);
     Route::post('category/edit/{id}', [CategoryController::class, 'edit']);
     Route::get('category/delete/{id}', [CategoryController::class, 'delete']);
 
-    Route::get('categories-by-type/{type}', [CategoryController::class, 'getCategoryByType']);
 
+    Route::get('categories-by-type/{type}', [CategoryController::class, 'getCategoryByType']);
 
 
     //faq
@@ -89,6 +88,41 @@ Route::middleware('changeLang')->group(function () {
     Route::get('faq/{id}', [FaqController::class, 'view']);
     Route::get('faq/delete/{id}', [FaqController::class, 'delete']);
 
+     //Clinic
+    Route::get('clinics', [ClinicController::class, 'list']);
+    Route::post('clinic-create', [ClinicController::class, 'save']);
+    Route::get('clinic/{id}', [ClinicController::class, 'view']);
+    Route::get('clinic/delete/{id}', [ClinicController::class, 'delete']);
+    Route::post('clinic/edit/{id}', [ClinicController::class, 'edit']);
+
+    //Doctor
+    Route::get('doctors', [DoctorController::class, 'list']);
+    Route::post('doctor-create', [DoctorController::class, 'save']);
+    Route::get('doctor/{id}', [DoctorController::class, 'view']);
+    Route::get('doctor/delete/{id}', [DoctorController::class, 'delete']);
+    Route::post('doctor/edit/{id}', [DoctorController::class, 'edit']);
+    Route::post('doctors/search', [DoctorController::class, 'lookfor']);
+
+    Route::post('doctor/add-category/{doctor_id}', [CategoryController::class, 'addToDoctor']);
+
+    Route::get('doctors/get-category', [CategoryController::class, 'getCategoriesForDoctors']);
+
+    Route::get('get-doctors/{category_id}', [CategoryController::class, 'getDoctors']);
+
+############################### section ################################
+    Route::get('sections', [SectionController::class, 'list']);
+    Route::post('section-create', [SectionController::class, 'save']);
+    Route::get('section/{id}', [SectionController::class, 'view']);
+    Route::post('section/update/{id}', [SectionController::class, 'edit']);
+    Route::get('section/delete/{id}', [SectionController::class, 'delete']);
+
+    //Blog
+    Route::get('blogs', [BlogController::class, 'list']);
+    Route::post('blog-create', [BlogController::class, 'save']);
+    Route::get('blog/{id}', [BlogController::class, 'view']);
+    Route::get('blog/delete/{id}', [BlogController::class, 'delete']);
+    Route::post('blog/edit/{id}', [BlogController::class, 'edit']);
+    Route::get('blogs-lists', [BlogController::class, 'getLists']);
 
     //Clinic
     Route::get('clinics', [ClinicController::class, 'list']);
@@ -112,6 +146,22 @@ Route::middleware('changeLang')->group(function () {
 
     Route::get('get-doctors/{category_id}', [CategoryController::class, 'getDoctors']);
 
+
+    Route::post('blog/add-category/{blog_id}', [CategoryController::class, 'addToBlog']);
+
+
+    Route::get('blog/get-blogs/{category_id}', [CategoryController::class, 'getBlogs']);
+
+    Route::get('random-blogs', [BlogController::class, 'randomBlogs']);
+
+############################### question ################################
+    Route::get('questions', [QuestionController::class, 'list']);
+    Route::post('question-create', [QuestionController::class, 'save']);
+    Route::get('question/{id}', [QuestionController::class, 'view']);
+    Route::post('question/update/{id}', [QuestionController::class, 'edit']);
+    Route::get('question/delete/{id}', [QuestionController::class, 'delete']);
+
+############################### answer ################################
 
     ############################### section ################################
     Route::get('sections', [SectionController::class, 'list']);
@@ -150,7 +200,6 @@ Route::middleware('changeLang')->group(function () {
     Route::get('answer/delete/{id}', [AnswerController::class, 'delete']);
 
 
-    //Certificate
     Route::get('certificates', [CertificateController::class, 'list']);
     Route::post('certificate-create', [CertificateController::class, 'save']);
     Route::get('certificate/{id}', [CertificateController::class, 'view']);
@@ -166,28 +215,36 @@ Route::middleware('changeLang')->group(function () {
     Route::post('study/edit/{id}', [StudyController::class, 'edit']);
 
 
-    //Introduction
+    //Study
+    Route::get('studies', [StudyController::class, 'list']);
+    Route::post('study-create', [StudyController::class, 'save']);
+    Route::get('study/{id}', [StudyController::class, 'view']);
+    Route::get('study/delete/{id}', [StudyController::class, 'delete']);
+    Route::post('study/edit/{id}', [StudyController::class, 'edit']);
+
     Route::get('introductions', [IntroductionController::class, 'list']);
     Route::post('introduction-create', [IntroductionController::class, 'save']);
     Route::get('introduction/{id}', [IntroductionController::class, 'view']);
     Route::get('introduction/delete/{id}', [IntroductionController::class, 'delete']);
     Route::post('introduction/edit/{id}', [IntroductionController::class, 'edit']);
 
-
-
-
-    //Plan
+     //Plan
     Route::get('plans', [PlanController::class, 'list']);
     Route::post('plan-create', [PlanController::class, 'save']);
     Route::get('plan/{id}', [PlanController::class, 'view']);
     Route::get('plan/delete/{id}', [PlanController::class, 'delete']);
     Route::post('plan/edit/{id}', [PlanController::class, 'edit']);
-});
 
+    //Notification
+    Route::get('notifications', [NotificationController::class, 'list']);
+    Route::post('notification-create', [NotificationController::class, 'save']);
+    Route::get('notification/{id}', [NotificationController::class, 'view']);
+    Route::get('notification/delete/{id}', [NotificationController::class, 'delete']);
+    Route::post('notification/edit/{id}', [NotificationController::class, 'edit']);
 
+    Route::post('send-noti', [NotificationController::class, 'sendNotiToUser']);
 
-
-
+    Route::post('send-to-all', [NotificationController::class, 'sendNotiToAll']);
 
 
 //doctor
@@ -202,11 +259,9 @@ Route::get('doctor/get-reviews/{doctor_id}', [ReviewController::class, 'getByDoc
 
 
 
+Route::get('doctor/get-reviews/{doctor_id}', [ReviewController::class, 'getByDoctor']);
+
 // Route::get( 'blog/get-categories/{blog_id}', [ CategoryController::class, 'getByBlog' ]);
-
-
-
-
 
 //Picture
 Route::get('pictures', [PictureController::class, 'list']);
@@ -226,6 +281,12 @@ Route::get('appointments-next', [AppointmentController::class, 'nextAppointmentL
 Route::get('appointments-finished', [AppointmentController::class, 'finishedAppointmentList']);
 Route::get('appointments-canceled', [AppointmentController::class, 'canceledAppointmentList']);
 
+Route::get('my-next/{user_id}', [AppointmentController::class, 'myNextAppointments']);
+Route::get('my-finished/{user_id}', [AppointmentController::class, 'myFinishedAppointments']);
+Route::get('my-canceled/{user_id}', [AppointmentController::class, 'myCanceledAppointments']);
+Route::get('my-appointments/{user_id}', [AppointmentController::class, 'myAppointments']);
+
+
 //Slider
 Route::get('sliders', [SliderController::class, 'list']);
 Route::post('slider-create', [SliderController::class, 'save']);
@@ -233,17 +294,12 @@ Route::get('slider/{id}', [SliderController::class, 'view']);
 Route::get('slider/delete/{id}', [SliderController::class, 'delete']);
 Route::post('slider/edit/{id}', [SliderController::class, 'edit']);
 
-
-
-
 //Subscription
 Route::get('subscriptions', [SubscriptionController::class, 'list']);
 Route::post('subscription-create', [SubscriptionController::class, 'save']);
 Route::get('subscription/{id}', [SubscriptionController::class, 'view']);
 Route::get('subscription/delete/{id}', [SubscriptionController::class, 'delete']);
 Route::post('subscription/edit/{id}', [SubscriptionController::class, 'edit']);
-
-
 
 //Card
 Route::get('cards', [CardController::class, 'list']);
@@ -259,7 +315,6 @@ Route::get('relative/{id}', [RelativeController::class, 'view']);
 Route::get('relative/delete/{id}', [RelativeController::class, 'delete']);
 Route::post('relative/edit/{id}', [RelativeController::class, 'edit']);
 
-
 //Identity
 Route::get('identities', [IdentityController::class, 'list']);
 Route::post('identity-create', [IdentityController::class, 'save']);
@@ -270,28 +325,16 @@ Route::post('identity/edit/{id}', [IdentityController::class, 'edit']);
 //Home
 Route::get('home-page', [HomeController::class, 'homePage']);
 
-
-
-
-
 //Reviews
 
 Route::get('reviews', [ReviewController::class, 'test']);
 
 Route::get('reviews', [ReviewController::class, 'list']);
 
-
 Route::get('review/{id}', [ReviewController::class, 'view']);
 Route::post('review/delete/{id}', [ReviewController::class, 'delete']);
 
-
-
-
 Route::post('users/search', [UserController::class, 'search']);
-
-
-
-
 
 ############################### result ################################
 Route::get('results', [ResultController::class, 'list']);
@@ -302,14 +345,11 @@ Route::get('result/delete/{id}', [ResultController::class, 'delete']);
 
 Route::middleware(['auth:api'])->group(function () {
 
-
     Route::post('result-create', [ResultController::class, 'save']);
-
 
     Route::get('my-subscriptions', [SubscriptionController::class, 'mySubscription']);
 
     Route::get('my-cards', [CardController::class, 'myCards']);
-
 
     Route::get('my-results', [ResultController::class, 'myResult']);
 
@@ -339,7 +379,6 @@ Route::middleware(['auth:api'])->group(function () {
         Route::post('/role/change-permission/{id}', [RolesController::class, 'changePermissions']);
     });
 
-
     //only those have manage_permission permission will get access
     Route::group(['middleware' => 'can:manage_permission|manage_user'], function () {
         Route::get('/permissions', [PermissionController::class, 'list']);
@@ -348,8 +387,6 @@ Route::middleware(['auth:api'])->group(function () {
         Route::get('/permission/delete/{id}', [PermissionController::class, 'delete']);
     });
 });
-
-
 
 // Route::get('certificates', [CertificateController::class, 'list']);
 // Route::post('certificate-create', [CertificateController::class, 'save']);
