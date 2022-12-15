@@ -24,7 +24,7 @@ class MySubscriptionResource extends JsonResource
              'status'=>
              (( \Carbon\Carbon::now()->between($this->start_date,$this->end_date)) ? __('Active') : __('Out od Date')),
              'user'=>UserResource::make($this->user),
-            'plan'=>UserResource::make($this->plan),
+            'plan'=>PlanResource::make($this->plan),
         ];
     }
 }

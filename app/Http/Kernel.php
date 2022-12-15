@@ -44,7 +44,7 @@ class Kernel extends HttpKernel
             // 'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \Illuminate\Session\Middleware\StartSession::class,
-            Middleware\changeLang::class,
+            \App\Http\Middleware\ChangeLang::class,
         ],
     ];
 
@@ -68,7 +68,7 @@ class Kernel extends HttpKernel
         // 'throttle' => \App\Http\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'role'  =>  \App\Http\Middleware\RoleMiddleware::class, // our role middleware
-        'changeLang'=>Middleware\changeLang::class,
+        'changeLang'=>\App\Http\Middleware\ChangeLang::class,
 
     ];
 }

@@ -30,6 +30,8 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\NotificationController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Middleware\ChangeLang;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -54,18 +56,31 @@ Route::post('/password-otb', [AuthController::class, 'password']);
 
 Route::post('change-password', [AuthController::class, 'changePassword']);
 
+
+Route::post('delete-user/{id}', [AuthController::class, 'delete']);
+
+Route::post('phone-update/{id}', [AuthController::class, 'updatePhone']);
+Route::post('resend-otp/{id}', [AuthController::class, 'resendOTP']);
+
+
+
+
+
 Route::middleware('changeLang')->group(function () {
 
     // cat
 
-//only those have manage_user permission will get access
+    //only those have manage_user permission will get access
+
     Route::get('categories', [CategoryController::class, 'list']);
     Route::post('category-create', [CategoryController::class, 'save']);
     Route::get('category/{id}', [CategoryController::class, 'view']);
     Route::post('category/edit/{id}', [CategoryController::class, 'edit']);
     Route::get('category/delete/{id}', [CategoryController::class, 'delete']);
 
+
     Route::get('categories-by-type/{type}', [CategoryController::class, 'getCategoryByType']);
+
 
     //faq
     Route::get('faq', [FaqController::class, 'list']);
@@ -109,7 +124,31 @@ Route::middleware('changeLang')->group(function () {
     Route::post('blog/edit/{id}', [BlogController::class, 'edit']);
     Route::get('blogs-lists', [BlogController::class, 'getLists']);
 
+    //Clinic
+    Route::get('clinics', [ClinicController::class, 'list']);
+    Route::post('clinic-create', [ClinicController::class, 'save']);
+    Route::get('clinic/{id}', [ClinicController::class, 'view']);
+    Route::get('clinic/delete/{id}', [ClinicController::class, 'delete']);
+    Route::post('clinic/edit/{id}', [ClinicController::class, 'edit']);
+
+
+    //Doctor
+    Route::get('doctors', [DoctorController::class, 'list']);
+    Route::post('doctor-create', [DoctorController::class, 'save']);
+    Route::get('doctor/{id}', [DoctorController::class, 'view']);
+    Route::get('doctor/delete/{id}', [DoctorController::class, 'delete']);
+    Route::post('doctor/edit/{id}', [DoctorController::class, 'edit']);
+    Route::post('doctors/search', [DoctorController::class, 'lookfor']);
+
+    Route::post('doctor/add-category/{doctor_id}', [CategoryController::class, 'addToDoctor']);
+
+    Route::get('doctors/get-category', [CategoryController::class, 'getCategoriesForDoctors']);
+
+    Route::get('get-doctors/{category_id}', [CategoryController::class, 'getDoctors']);
+
+
     Route::post('blog/add-category/{blog_id}', [CategoryController::class, 'addToBlog']);
+
 
     Route::get('blog/get-blogs/{category_id}', [CategoryController::class, 'getBlogs']);
 
@@ -123,18 +162,50 @@ Route::middleware('changeLang')->group(function () {
     Route::get('question/delete/{id}', [QuestionController::class, 'delete']);
 
 ############################### answer ################################
+
+    ############################### section ################################
+    Route::get('sections', [SectionController::class, 'list']);
+    Route::post('section-create', [SectionController::class, 'save']);
+    Route::get('section/{id}', [SectionController::class, 'view']);
+    Route::post('section/update/{id}', [SectionController::class, 'edit']);
+    Route::get('section/delete/{id}', [SectionController::class, 'delete']);
+
+
+
+    //Blog
+    Route::get('blogs', [BlogController::class, 'list']);
+    Route::post('blog-create', [BlogController::class, 'save']);
+    Route::get('blog/{id}', [BlogController::class, 'view']);
+    Route::get('blog/delete/{id}', [BlogController::class, 'delete']);
+    Route::post('blog/edit/{id}', [BlogController::class, 'edit']);
+    Route::get('blogs-lists', [BlogController::class, 'getLists']);
+
+    Route::post('blog/add-category/{blog_id}', [CategoryController::class, 'addToBlog']);
+
+    Route::get('blog/get-blogs/{category_id}', [CategoryController::class, 'getBlogs']);
+
+
+    ############################### question ################################
+    Route::get('questions', [QuestionController::class, 'list']);
+    Route::post('question-create', [QuestionController::class, 'save']);
+    Route::get('question/{id}', [QuestionController::class, 'view']);
+    Route::post('question/update/{id}', [QuestionController::class, 'edit']);
+    Route::get('question/delete/{id}', [QuestionController::class, 'delete']);
+
+    ############################### answer ################################
     Route::get('answers', [AnswerController::class, 'list']);
     Route::post('answer-create', [AnswerController::class, 'save']);
     Route::get('answer/{id}', [AnswerController::class, 'view']);
     Route::post('answer/update/{id}', [AnswerController::class, 'edit']);
     Route::get('answer/delete/{id}', [AnswerController::class, 'delete']);
 
-     //Certificate
+
     Route::get('certificates', [CertificateController::class, 'list']);
     Route::post('certificate-create', [CertificateController::class, 'save']);
     Route::get('certificate/{id}', [CertificateController::class, 'view']);
     Route::get('certificate/delete/{id}', [CertificateController::class, 'delete']);
     Route::post('certificate/edit/{id}', [CertificateController::class, 'edit']);
+
 
     //Study
     Route::get('studies', [StudyController::class, 'list']);
@@ -143,7 +214,14 @@ Route::middleware('changeLang')->group(function () {
     Route::get('study/delete/{id}', [StudyController::class, 'delete']);
     Route::post('study/edit/{id}', [StudyController::class, 'edit']);
 
-//Introduction
+
+    //Study
+    Route::get('studies', [StudyController::class, 'list']);
+    Route::post('study-create', [StudyController::class, 'save']);
+    Route::get('study/{id}', [StudyController::class, 'view']);
+    Route::get('study/delete/{id}', [StudyController::class, 'delete']);
+    Route::post('study/edit/{id}', [StudyController::class, 'edit']);
+
     Route::get('introductions', [IntroductionController::class, 'list']);
     Route::post('introduction-create', [IntroductionController::class, 'save']);
     Route::get('introduction/{id}', [IntroductionController::class, 'view']);
@@ -168,11 +246,18 @@ Route::middleware('changeLang')->group(function () {
 
     Route::post('send-to-all', [NotificationController::class, 'sendNotiToAll']);
 
-});
 
 //doctor
 
 Route::post('doctor/add-review/{doctor_id}', [ReviewController::class, 'addToDoctor']);
+
+Route::get('doctor/get-reviews/{doctor_id}', [ReviewController::class, 'getByDoctor']);
+
+
+
+
+
+
 
 Route::get('doctor/get-reviews/{doctor_id}', [ReviewController::class, 'getByDoctor']);
 
