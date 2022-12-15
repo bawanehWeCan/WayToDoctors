@@ -109,7 +109,6 @@ Route::middleware('changeLang')->group(function () {
 
     Route::get('get-doctors/{category_id}', [CategoryController::class, 'getDoctors']);
 
-############################### section ################################
     Route::get('sections', [SectionController::class, 'list']);
     Route::post('section-create', [SectionController::class, 'save']);
     Route::get('section/{id}', [SectionController::class, 'view']);
@@ -154,14 +153,14 @@ Route::middleware('changeLang')->group(function () {
 
     Route::get('random-blogs', [BlogController::class, 'randomBlogs']);
 
-############################### question ################################
+    ############################### question ################################
     Route::get('questions', [QuestionController::class, 'list']);
     Route::post('question-create', [QuestionController::class, 'save']);
     Route::get('question/{id}', [QuestionController::class, 'view']);
     Route::post('question/update/{id}', [QuestionController::class, 'edit']);
     Route::get('question/delete/{id}', [QuestionController::class, 'delete']);
 
-############################### answer ################################
+    ############################### answer ################################
 
     ############################### section ################################
     Route::get('sections', [SectionController::class, 'list']);
@@ -245,7 +244,7 @@ Route::middleware('changeLang')->group(function () {
     Route::post('send-noti', [NotificationController::class, 'sendNotiToUser']);
 
     Route::post('send-to-all', [NotificationController::class, 'sendNotiToAll']);
-
+});
 
 //doctor
 
