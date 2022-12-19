@@ -67,6 +67,8 @@ class AppointmentController extends ApiController
 
         }
 
+        return $this->returnData('data',  $this->resource::make($appointment ), __('Get  succesfully'));
+
         return $this->returnSuccessMessage(__('The notification has been sent successfully!'));
     }
 
