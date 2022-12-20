@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use App\Models\Image;
 
 
 class UserRepository extends AbstractRepository
@@ -105,14 +106,16 @@ class UserRepository extends AbstractRepository
             $extension = $file->getClientOriginalExtension(); // getting image extension
             $filename =time().mt_rand(1000,9999).'.'.$extension;
             $file->move(public_path('img/users/'), $filename);
-            if ($update) {
-                unlink($user->image->image);
-                return $user->image()->update([
-                    'image' => 'img/users/'.$filename
-                ]);
+            $file_path = "img/users/".$filename;
+
+            if( $update ){
+                $i = Image::where('imageable_id',$user->id)->where('imageable_type',get_class($user))->first();
+                $i->image = $file_path;
+                return $i->save();
             }
-            return $user->image()->create([
-                'image' => "img/users/".$filename,
+
+            return $user->image()->updateOrCreate([
+                'image' => $file_path,
                 'imageable_id' => $user->id,
                 'imageable_type' => get_class($user)
             ]);
