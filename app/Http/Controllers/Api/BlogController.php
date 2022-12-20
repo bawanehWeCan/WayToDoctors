@@ -53,7 +53,7 @@ class BlogController extends ApiController
         $data = array();
 
         $data['recent']=BlogResource::collection($this->repositry->all() );
-        $data['cats']=CategoryResource::collection( Category::where('type','blog')->get() );
+        $data['cats']=CategoryResource::collection( Category::where('type','blog')->paginate(10) );
         $data[ 'random' ]= BlogResource::make( Blog::inRandomOrder()->first() );
         return $this->returnData( 'data' ,  $data , __('Succesfully'));
 
