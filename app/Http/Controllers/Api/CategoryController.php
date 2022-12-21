@@ -38,7 +38,7 @@ class CategoryController extends ApiController
     public function addToBlog( Request $request, $blog_id ){
 
 
-        $category = $this->repositry->getByID($request->category_id);
+        $category = Category::find($request->category_id);
         // $blogRepo = new Repository( app( Blog::class ) );
 
         $blog = Blog::find($blog_id);
