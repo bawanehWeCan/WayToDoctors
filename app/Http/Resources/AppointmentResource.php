@@ -23,11 +23,13 @@ class AppointmentResource extends JsonResource
             'booking_type'=>$this->booking_type,
             'location'=>(string)$this->location,
             'case_description'=>(string)$this->case_description,
-            'file_path'=>$this->file_path,
-             'doctor_id'=>(int)$this?->doctor?->id,
-            'doctor'=>new DoctorResource($this?->doctor),
+
+             'doctor_id'=>$this->doctor->id,
+            // 'doctor'=>new DoctorResource($this?->doctor),
+
             // 'user'=>new UserResource($this->user),
             'user_id'=>$this->user_id,
+            'files'=> FileResource::collection($this?->files),
 
         ];
     }

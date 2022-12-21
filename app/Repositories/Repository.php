@@ -38,7 +38,7 @@ class Repository{
 
 
     public function allWithCondition($key, $value){
-        $data = $this->model->where( $key,$value)->get();
+        $data = $this->model->where( $key,$value)->paginate(10);
         return $data;
     }
 

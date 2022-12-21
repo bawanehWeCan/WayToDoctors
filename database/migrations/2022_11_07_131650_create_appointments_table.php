@@ -22,7 +22,7 @@ return new class extends Migration
             $table->text('booking_type');
             $table->text('location');
             $table->text('case_description');
-            $table->text('file_path')->nullable();
+           // $table->text('file_path')->nullable();
             $table->integer('doctor_id');
             $table->integer('user_id');
             $table->timestamps();

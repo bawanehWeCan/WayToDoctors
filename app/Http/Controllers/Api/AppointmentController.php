@@ -97,7 +97,7 @@ class AppointmentController extends ApiController
     public function myNextAppointments($user_id){
 
         $user = User::find( $user_id );
-        $data= $user->appointments()->where('type','next')->get();
+        $data= $user->appointments()->where('type','next')->paginate(10);
 
         return $this->returnData('data',  $this->resource::collection($data ), __('Get  succesfully'));
 
@@ -106,7 +106,7 @@ class AppointmentController extends ApiController
     public function myFinishedAppointments($user_id){
 
         $user = User::find( $user_id );
-        $data= $user->appointments()->where('type','finished')->get();
+        $data= $user->appointments()->where('type','finished')->paginate(10);
 
         return $this->returnData('data',  $this->resource::collection($data ), __('Get  succesfully'));
 
@@ -115,7 +115,7 @@ class AppointmentController extends ApiController
     public function myCanceledAppointments($user_id){
 
         $user = User::find( $user_id );
-        $data= $user->appointments()->where('type','canceled')->get();
+        $data= $user->appointments()->where('type','canceled')->paginate(10);
 
         return $this->returnData('data',  $this->resource::collection($data ), __('Get  succesfully'));
 
