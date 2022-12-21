@@ -18,6 +18,7 @@ return new class extends Migration
             $table->json('name');
             $table->text('details');
             $table->text('price');
+            $table->integer('time');
             $table->timestamps();
         });
     }

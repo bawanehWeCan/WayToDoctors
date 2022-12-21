@@ -72,14 +72,8 @@ Route::middleware('changeLang')->group(function () {
 
     // cat
 
-<<<<<<< HEAD
 //only those have manage_user permission will get access
     Route::get('categories', [CategoryController::class, 'pagination']);
-=======
-    //only those have manage_user permission will get access
-
-    Route::get('categories', [CategoryController::class, 'list']);
->>>>>>> 51913be748db13da29f56f6f10986f6138633ce6
     Route::post('category-create', [CategoryController::class, 'save']);
     Route::get('category/{id}', [CategoryController::class, 'view']);
     Route::post('category/edit/{id}', [CategoryController::class, 'edit']);
