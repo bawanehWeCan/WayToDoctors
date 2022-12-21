@@ -53,7 +53,7 @@ class CategoryController extends ApiController
     public function getBlogs($category_id){
 
     $category = Category::find( $category_id );
-    return $this->returnData('data',  BlogResource::collection( $category->blogs ), __('Get  succesfully'));
+    return $this->returnData('data',  BlogResource::collection( $category?->blogs ), __('Get  succesfully'));
 
 }
 
