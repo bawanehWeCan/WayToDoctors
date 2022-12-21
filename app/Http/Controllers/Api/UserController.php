@@ -103,7 +103,7 @@ class UserController extends ApiController
         );
         $pr = Profile::where('user_id',$user->id)->first();
         if( $pr ){
-            $user->profile()->create($request->except([
+            $pr->update($request->except([
                 'name',
                 'email',
                 'phone',
