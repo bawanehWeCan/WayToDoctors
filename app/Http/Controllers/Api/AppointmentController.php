@@ -11,6 +11,7 @@ use App\Http\Requests\AppointmentRequest;
 use App\Http\Resources\AppointmentResource;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ApiController;
+use App\Models\File;
 use App\Traits\NotificationTrait;
 
 class AppointmentController extends ApiController
@@ -25,7 +26,16 @@ class AppointmentController extends ApiController
 
     public function save( Request $request ){
 
-        $appointment = $this->repositry->save($request->all());
+        $appointment = $this->repositry->save($request->except('file_path'));
+
+        foreach ($request->file_path as $path) {
+            $file = new File();
+            $file->file = $path;
+            $file->appointment_id = $appointment->id;
+            $file->save();
+        }
+
+
 
         $user = User::find($appointment->user_id);
 
