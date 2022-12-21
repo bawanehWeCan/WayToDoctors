@@ -22,7 +22,7 @@ class Blog extends Model
         }
     }
     public function categories(){
-        return $this->morphToMany( Category::class, 'categoryable' );
+        return $this->morphByMany( Category::class, 'categoryable' );
     }
 
 }
