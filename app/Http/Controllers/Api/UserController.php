@@ -113,6 +113,8 @@ class UserController extends ApiController
                 'password',
 
             ]));
+
+            return $this->returnData('user', UserResource::make($user), 'User updated successfully');
         }
 
         $user->profile()->updateOrCreate($request->except([
