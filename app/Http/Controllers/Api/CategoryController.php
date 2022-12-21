@@ -13,7 +13,6 @@ use App\Http\Resources\BlogResource;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ApiController;
 use App\Http\Resources\DoctorResource;
-use App\Models\Categoryable;
 
 class CategoryController extends ApiController
 {
@@ -38,16 +37,12 @@ class CategoryController extends ApiController
     public function addToBlog( Request $request, $blog_id ){
 
 
-        $category = Category::find($request->category_id);
-        // $blogRepo = new Repository( app( Blog::class ) );
+        $category = $this->repositry->getByID($request->category_id);
+        $blogRepo = new Repository( app( Blog::class ) );
 
-        $blog = Blog::find($blog_id);
+        $blog = $blogRepo->getByID( $blog_id );
 
-        $c = new Categoryable();
-        $c->category_id = $category->id;
-        $c->categoryable_id = $blog->id;
-        $c->categoryable_type = get_class($category);
-        $c->save();
+        $blog->categories()->save( $category );
 
 
         return $this->returnSuccessMessage(__('Added succesfully!'));
