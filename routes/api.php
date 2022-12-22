@@ -74,6 +74,8 @@ Route::middleware('changeLang')->group(function () {
 
 //only those have manage_user permission will get access
     Route::get('categories', [CategoryController::class, 'pagination']);
+
+
     Route::post('category-create', [CategoryController::class, 'save']);
     Route::get('category/{id}', [CategoryController::class, 'view']);
     Route::post('category/edit/{id}', [CategoryController::class, 'edit']);
@@ -112,6 +114,7 @@ Route::middleware('changeLang')->group(function () {
 
 ############################### section ################################
     Route::get('sections', [SectionController::class, 'pagination']);
+
     Route::post('section-create', [SectionController::class, 'save']);
     Route::get('section/{id}', [SectionController::class, 'view']);
     Route::post('section/update/{id}', [SectionController::class, 'edit']);
@@ -157,15 +160,15 @@ Route::middleware('changeLang')->group(function () {
 
 ############################### question ################################
     Route::get('questions', [QuestionController::class, 'pagination']);
+
     Route::post('question-create', [QuestionController::class, 'save']);
     Route::get('question/{id}', [QuestionController::class, 'view']);
     Route::post('question/update/{id}', [QuestionController::class, 'edit']);
     Route::get('question/delete/{id}', [QuestionController::class, 'delete']);
 
-############################### answer ################################
-<<<<<<< HEAD
+
     Route::get('answers', [AnswerController::class, 'pagination']);
-=======
+
 
     ############################### section ################################
     Route::get('sections', [SectionController::class, 'list']);
@@ -198,19 +201,14 @@ Route::middleware('changeLang')->group(function () {
 
     ############################### answer ################################
     Route::get('answers', [AnswerController::class, 'list']);
->>>>>>> 51913be748db13da29f56f6f10986f6138633ce6
     Route::post('answer-create', [AnswerController::class, 'save']);
     Route::get('answer/{id}', [AnswerController::class, 'view']);
     Route::post('answer/update/{id}', [AnswerController::class, 'edit']);
     Route::get('answer/delete/{id}', [AnswerController::class, 'delete']);
 
-<<<<<<< HEAD
      //Certificate
     Route::get('certificates', [CertificateController::class, 'pagination']);
-=======
 
-    Route::get('certificates', [CertificateController::class, 'list']);
->>>>>>> 51913be748db13da29f56f6f10986f6138633ce6
     Route::post('certificate-create', [CertificateController::class, 'save']);
     Route::get('certificate/{id}', [CertificateController::class, 'view']);
     Route::get('certificate/delete/{id}', [CertificateController::class, 'delete']);
@@ -232,12 +230,9 @@ Route::middleware('changeLang')->group(function () {
     Route::get('study/delete/{id}', [StudyController::class, 'delete']);
     Route::post('study/edit/{id}', [StudyController::class, 'edit']);
 
-<<<<<<< HEAD
 //Introduction
     Route::get('introductions', [IntroductionController::class, 'pagination']);
-=======
-    Route::get('introductions', [IntroductionController::class, 'list']);
->>>>>>> 51913be748db13da29f56f6f10986f6138633ce6
+
     Route::post('introduction-create', [IntroductionController::class, 'save']);
     Route::get('introduction/{id}', [IntroductionController::class, 'view']);
     Route::get('introduction/delete/{id}', [IntroductionController::class, 'delete']);
@@ -260,7 +255,7 @@ Route::middleware('changeLang')->group(function () {
     Route::post('send-noti', [NotificationController::class, 'sendNotiToUser']);
 
     Route::post('send-to-all', [NotificationController::class, 'sendNotiToAll']);
-
+});
 
 
 //Favorite
