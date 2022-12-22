@@ -123,4 +123,12 @@ class UserController extends ApiController
         return $this->returnData('data',  DoctorResource::collection( $favorites ), __('Get  succesfully'));
 
     }
+
+    public function myDoctors()
+    {
+
+        $doctors = Auth::user()->doctors;
+        return $this->returnData('data',  DoctorResource::collection( $doctors ), __('Get  succesfully'));
+
+    }
 }

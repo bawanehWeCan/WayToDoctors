@@ -110,4 +110,8 @@ class User extends Authenticatable
         return $this->belongsToMany(Doctor::class,'favorites','user_id','doctor_id');
     }
 
+    public function doctors(){
+        return $this->belongsToMany(Doctor::class,'user__doctors','user_id','doctor_id');
+    }
+
 }
