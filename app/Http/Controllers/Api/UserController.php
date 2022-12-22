@@ -6,6 +6,7 @@ use App\Http\Controllers\ApiController;
 use App\Http\Requests\UserRequest;
 use App\Http\Resources\UserResource;
 use App\Http\Resources\DoctorResource;
+use App\Models\Profile;
 use App\Models\User;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
@@ -100,6 +101,21 @@ class UserController extends ApiController
                 'password',
             ])
         );
+        $pr = Profile::where('user_id',$user->id)->first();
+        if( $pr ){
+            $pr->update($request->except([
+                'name',
+                'email',
+                'phone',
+                'step',
+                'active',
+                'image',
+                'password',
+
+            ]));
+
+            return $this->returnData('user', UserResource::make($user), 'User updated successfully');
+        }
 
         $user->profile()->updateOrCreate($request->except([
             'name',

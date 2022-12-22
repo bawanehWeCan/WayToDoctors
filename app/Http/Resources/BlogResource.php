@@ -19,6 +19,7 @@ class BlogResource extends JsonResource
             'title'=>$this->title,
             'image'=>$this->image,
             'body'=>$this->body,
+            'categireis'=>  CategoryResource::collection( $this->categories )
 
         ];
     }

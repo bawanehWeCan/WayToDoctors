@@ -24,8 +24,10 @@ class AppointmentResource extends JsonResource
             'location'=>(string)$this->location,
             'case_description'=>(string)$this->case_description,
 
+
             //  'doctor_id'=>$this->doctor->id,
             'doctor'=>new DoctorResource($this?->doctor),
+
 
             // 'user'=>new UserResource($this->user),
             'user_id'=>$this->user_id,

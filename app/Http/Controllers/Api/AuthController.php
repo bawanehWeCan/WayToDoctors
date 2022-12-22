@@ -15,6 +15,7 @@ use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\ProfileUpdateRequest;
 use App\Http\Requests\PasswordChangeRequest;
+use Exception;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
@@ -56,11 +57,11 @@ class AuthController extends Controller
 
 
 
-            return response(['status' => true, 'code' => 200, 'msg' => __('Log in success'), 'data' => [
-                'token' => $accessToken,
-                'user' => UserResource::make(Auth::user())
-            ]]);
-        }
+        return response(['status' => true, 'code' => 200, 'msg' => __('Log in success'), 'data' => [
+            'token' => $accessToken,
+            'user' => UserResource::make(Auth::user())
+        ]]);
+    }
 
     //     return response(['status' => true, 'code' => 200, 'msg' => __('Log in success'), 'data' => [
     //         'token' => $accessToken,
@@ -177,24 +178,28 @@ class AuthController extends Controller
     }
 
 
-    public function updatePhone(Request $request,$id)
+    public function updatePhone(Request $request, $id)
     {
-        $user = User::find($id);
-        $user->phone = $request->phone;
-        $user->save();
+        try {
+            $user = User::find($id);
+            $user->phone = $request->phone;
+            $user->save();
 
-        $otp = $this->sendOTP($request->phone);
+            $otp = $this->sendOTP($request->phone);
 
-        $user->otp = $otp;
+            $user->otp = $otp;
             $user->save();
 
 
 
-        return $this->returnSuccessMessage('Code was sent!');
+            return $this->returnSuccessMessage('Code was sent!');
+        } catch (Exception $th) {
+            dd( $th );
+        }
     }
 
 
-    public function resendOTP(Request $request,$id)
+    public function resendOTP(Request $request, $id)
     {
         $user = User::find($id);
 
