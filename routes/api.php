@@ -30,6 +30,7 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\FavoriteController;
 use App\Http\Controllers\Api\FileController;
+use App\Http\Controllers\Api\DoctorUserController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Middleware\ChangeLang;
@@ -266,6 +267,13 @@ Route::get('favorite/delete/{id}', [FavoriteController::class, 'delete']);
 Route::post('favorite/edit/{id}', [FavoriteController::class, 'edit']);
 
 
+//user_doctor
+Route::get('user-doctor', [DoctorUserController::class, 'pagination']);
+Route::post('user-doctor-create', [DoctorUserController::class, 'save']);
+Route::get('user-doctor/{id}', [DoctorUserController::class, 'view']);
+Route::get('user-doctor/delete/{id}', [DoctorUserController::class, 'delete']);
+Route::post('user-doctor/edit/{id}', [DoctorUserController::class, 'edit']);
+
 
 
 
@@ -402,6 +410,10 @@ Route::middleware(['auth:api'])->group(function () {
 
    //my favorites doctors
     Route::get('my-favorites', [UserController::class, 'myFavorites']);
+
+
+    //my doctors
+      Route::get('my-doctors', [UserController::class, 'myDoctors']);
 
     //only those have manage_role permission will get access
     Route::group(['middleware' => 'can:manage_role|manage_user'], function () {
