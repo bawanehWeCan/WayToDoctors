@@ -15,13 +15,14 @@ class RelativeResource extends JsonResource
     public function toArray($request)
     {
         return [
-
+            'id'=>$this->id,
             'full_name'=>$this->full_name,
             'relation'=>$this->relation,
             'phone_number'=>$this->phone_number,
             'address'=>(string)$this->address,
             'career'=>(string)$this->career,
-            'user'=>new UserResource($this->user),
+            // 'user'=>new UserResource($this->user),
+            'user'=>$this?->user?->id,
 
         ];
     }
