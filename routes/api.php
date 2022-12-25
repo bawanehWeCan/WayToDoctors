@@ -352,6 +352,8 @@ Route::get('relative/{id}', [RelativeController::class, 'view']);
 Route::get('relative/delete/{id}', [RelativeController::class, 'delete']);
 Route::post('relative/edit/{id}', [RelativeController::class, 'edit']);
 
+Route::get('my-relatives/{user_id}', [UserController::class, 'myRelatives']);
+
 //Identity
 Route::get('identities', [IdentityController::class, 'pagination']);
 Route::post('identity-create', [IdentityController::class, 'save']);

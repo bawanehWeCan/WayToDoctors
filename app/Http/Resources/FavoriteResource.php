@@ -17,8 +17,8 @@ class FavoriteResource extends JsonResource
         return [
 
             'id'=>$this->id,
-            // 'user'=>$this->user->id,
-            // 'doctor'=>$this->doctor->id,
+            // 'user'=>$this?->user?->id,
+            // 'doctor'=>$this?->doctor?->id,
             'user'=>new UserResource($this->user),
             'doctor'=>new DoctorResource($this->doctor)
         ]

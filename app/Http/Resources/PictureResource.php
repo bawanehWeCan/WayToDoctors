@@ -18,7 +18,7 @@ class PictureResource extends JsonResource
             'id'=>$this->id,
             'title'=>$this->title,
             'image'=>$this->image,
-            'doctor_id'=>$this->doctor_id,
+            'doctor_id'=>$this->doctor->id,
             //'doctor'=>new DoctorResource($this->doctor),
         ];
     }

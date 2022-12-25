@@ -29,7 +29,8 @@ class UserResource extends JsonResource
             'date_of_birth' => (string)$this?->profile?->date_of_birth??null,
             'gender'        => (string)$this?->profile?->gender??null,
             'status'        => (string)$this?->profile?->status??null,
-            'image'        => (string)$this->image?->image
+            'image'        => (string)$this?->image?->image??null,
+
 
 
         ];

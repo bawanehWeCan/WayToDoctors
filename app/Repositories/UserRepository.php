@@ -77,6 +77,7 @@ class UserRepository extends AbstractRepository
             'active',
             'image',
 
+
         ]));
 
         return $user->fresh();

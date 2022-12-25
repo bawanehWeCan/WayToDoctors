@@ -41,7 +41,7 @@ class AppointmentController extends ApiController
 
         $token = $user->device_token;
 
-        if($appointment->status == "canceled")
+        if($appointment->status == "Canceled")
         {
         $this->send('تم إلغاء حجزك','مرحبا ',$token);
 
@@ -52,7 +52,7 @@ class AppointmentController extends ApiController
         $note->save();
         }
 
-        elseif($appointment->status == "approved")
+        elseif($appointment->status == "Approved")
         {
 
             $this->send('تم الموافقة على حجزك','مرحبا ',$token);
@@ -91,23 +91,23 @@ class AppointmentController extends ApiController
 
     public function nextAppointmentList(){
 
-        return $this->listWithCondition('type','next');
+        return $this->listWithCondition('type','Binding');
     }
 
     public function finishedAppointmentList(){
 
-        return $this->listWithCondition('type','finished');
+        return $this->listWithCondition('type','Finished');
     }
 
     public function canceledAppointmentList(){
 
-        return $this->listWithCondition('type','canceled');
+        return $this->listWithCondition('type','Canceled');
     }
 
     public function myNextAppointments($user_id){
 
         $user = User::find( $user_id );
-        $data= $user->appointments()->where('type','next')->paginate(10);
+        $data= $user->appointments()->where('type','Binding')->paginate(10);
 
         return $this->returnData('data',  $this->resource::collection($data ), __('Get  succesfully'));
 
@@ -116,7 +116,7 @@ class AppointmentController extends ApiController
     public function myFinishedAppointments($user_id){
 
         $user = User::find( $user_id );
-        $data= $user->appointments()->where('type','finished')->paginate(10);
+        $data= $user->appointments()->where('type','Finished')->paginate(10);
 
         return $this->returnData('data',  $this->resource::collection($data ), __('Get  succesfully'));
 
@@ -125,7 +125,7 @@ class AppointmentController extends ApiController
     public function myCanceledAppointments($user_id){
 
         $user = User::find( $user_id );
-        $data= $user->appointments()->where('type','canceled')->paginate(10);
+        $data= $user->appointments()->where('type','Canceled')->paginate(10);
 
         return $this->returnData('data',  $this->resource::collection($data ), __('Get  succesfully'));
 
