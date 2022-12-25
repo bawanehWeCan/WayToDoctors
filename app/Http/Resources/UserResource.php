@@ -32,6 +32,7 @@ class UserResource extends JsonResource
             'image'        => (string)$this?->image?->image??null,
 
 
+
         ];
     }
 }
