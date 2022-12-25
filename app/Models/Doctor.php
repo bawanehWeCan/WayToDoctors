@@ -45,4 +45,8 @@ class Doctor extends Model
     public function categories(){
         return $this->morphToMany( Category::class, 'categoryable' );
     }
+    public function users(){
+        return $this->belongsToMany(User::class,'favorites','doctor_id','user_id');
+    }
+
 }

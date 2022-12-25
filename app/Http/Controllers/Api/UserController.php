@@ -6,7 +6,9 @@ use App\Http\Controllers\ApiController;
 use App\Http\Requests\UserRequest;
 use App\Http\Resources\UserResource;
 use App\Http\Resources\RelativeResource;
+use App\Http\Resources\FavoriteResource;
 use App\Http\Resources\DoctorResource;
+use App\Http\Resources\DoctorUserResource;
 use App\Models\Profile;
 use App\Models\User;
 use App\Repositories\UserRepository;
@@ -143,7 +145,6 @@ class UserController extends ApiController
 
     public function myDoctors()
     {
-
         $doctors = Auth::user()->doctors;
         return $this->returnData('data',  DoctorResource::collection( $doctors ), __('Get  succesfully'));
 
