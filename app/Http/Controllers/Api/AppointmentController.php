@@ -91,23 +91,23 @@ class AppointmentController extends ApiController
 
     public function nextAppointmentList(){
 
-        return $this->listWithCondition('type','Binding');
+        return $this->listWithCondition('status','Binding');
     }
 
     public function finishedAppointmentList(){
 
-        return $this->listWithCondition('type','Finished');
+        return $this->listWithCondition('status','Finished');
     }
 
     public function canceledAppointmentList(){
 
-        return $this->listWithCondition('type','Canceled');
+        return $this->listWithCondition('status','Canceled');
     }
 
     public function myNextAppointments($user_id){
 
         $user = User::find( $user_id );
-        $data= $user->appointments()->where('type','Binding')->paginate(10);
+        $data= $user->appointments()->where('status','Binding')->paginate(10);
 
         return $this->returnData('data',  $this->resource::collection($data ), __('Get  succesfully'));
 
@@ -116,7 +116,7 @@ class AppointmentController extends ApiController
     public function myFinishedAppointments($user_id){
 
         $user = User::find( $user_id );
-        $data= $user->appointments()->where('type','Finished')->paginate(10);
+        $data= $user->appointments()->where('status','Finished')->paginate(10);
 
         return $this->returnData('data',  $this->resource::collection($data ), __('Get  succesfully'));
 
@@ -125,7 +125,7 @@ class AppointmentController extends ApiController
     public function myCanceledAppointments($user_id){
 
         $user = User::find( $user_id );
-        $data= $user->appointments()->where('type','Canceled')->paginate(10);
+        $data= $user->appointments()->where('status','Canceled')->paginate(10);
 
         return $this->returnData('data',  $this->resource::collection($data ), __('Get  succesfully'));
 
