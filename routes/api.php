@@ -256,6 +256,12 @@ Route::middleware('changeLang')->group(function () {
     Route::post('send-noti', [NotificationController::class, 'sendNotiToUser']);
 
     Route::post('send-to-all', [NotificationController::class, 'sendNotiToAll']);
+
+
+
+    Route::get('user-doctor/delete/{doctor_id}/{user_id}', [DoctorUserController::class, 'deletebyID']);
+
+    Route::get('favorite/delete/{doctor_id}/{user_id}', [FavoriteController::class, 'deletebyID']);
 });
 
 
@@ -263,7 +269,7 @@ Route::middleware('changeLang')->group(function () {
 Route::get('favorites', [FavoriteController::class, 'pagination']);
 Route::post('favorite-create', [FavoriteController::class, 'save']);
 Route::get('favorite/{id}', [FavoriteController::class, 'view']);
-Route::get('favorite/delete/{id}', [FavoriteController::class, 'delete']);
+
 Route::post('favorite/edit/{id}', [FavoriteController::class, 'edit']);
 
 
@@ -271,7 +277,7 @@ Route::post('favorite/edit/{id}', [FavoriteController::class, 'edit']);
 Route::get('user-doctor', [DoctorUserController::class, 'pagination']);
 Route::post('user-doctor-create', [DoctorUserController::class, 'save']);
 Route::get('user-doctor/{id}', [DoctorUserController::class, 'view']);
-Route::get('user-doctor/delete/{id}', [DoctorUserController::class, 'delete']);
+
 Route::post('user-doctor/edit/{id}', [DoctorUserController::class, 'edit']);
 
 

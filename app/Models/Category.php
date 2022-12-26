@@ -32,10 +32,10 @@ class Category extends Model
     }
 
     public function blogs(){
-        return $this->morphedByMany( Blog::class, 'categoryable' );
+        return $this->morphedByMany( Blog::class, 'categoryable' )->paginate(10);
     }
 
     public function doctors(){
-        return $this->morphedByMany( Doctor::class, 'categoryable' );
+        return $this->morphedByMany( Doctor::class, 'categoryable' )->paginate(10);
     }
 }

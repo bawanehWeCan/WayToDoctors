@@ -11,6 +11,7 @@ use App\Http\Resources\DoctorResource;
 use App\Http\Resources\DoctorUserResource;
 use App\Models\Profile;
 use App\Models\User;
+use App\Models\Relative;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -145,16 +146,21 @@ class UserController extends ApiController
 
     public function myDoctors()
     {
-        $doctors = Auth::user()->doctors;
+        $doctors = Auth::user()->doctors();
+        // $user = Auth::user();
+        // $doctors = $user->setRelation('doctors',$user->doctors()->paginate(10));
         return $this->returnData('data',  DoctorResource::collection( $doctors ), __('Get  succesfully'));
 
-    }
+    }//this yes  test now ? yes
+
 
     public function myRelatives($user_id)
     {
 
-        $relatives = User::find($user_id)->relatives;
-        return $this->returnData('data',  RelativeResource::collection( $relatives ), __('Get  succesfully'));
+        // $relatives = User::find($user_id)->relatives;
+        $relatives = Relative::where('user_id',$user_id)->paginate(10) ;
+        return $this->returnData('data',  RelativeResource::collection( $relatives), __('Get  succesfully'));
 
     }
 }
+
