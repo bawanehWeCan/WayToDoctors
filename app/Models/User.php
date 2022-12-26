@@ -109,10 +109,10 @@ class User extends Authenticatable
 
 
     public function favorites(){
-        return $this->belongsToMany(Doctor::class,'favorites','user_id','doctor_id');
+        return $this->belongsToMany(Doctor::class,'favorites','user_id','doctor_id')->paginate(10);
     }
     public function doctors(){
-        return $this->belongsToMany(Doctor::class,'user__doctors','user_id','doctor_id');
+        return $this->belongsToMany(Doctor::class,'user__doctors','user_id','doctor_id')->paginate(10);
     }
 
     public function relatives(){
