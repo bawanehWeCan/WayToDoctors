@@ -111,8 +111,11 @@ class UserRepository extends AbstractRepository
 
             if( $update ){
                 $i = Image::where('imageable_id',$user->id)->where('imageable_type',get_class($user))->first();
-                $i->image = $file_path;
-                return $i->save();
+                if($i){
+
+                    $i->image = $file_path;
+                    return $i->save();
+                }
             }
 
             return $user->image()->updateOrCreate([
