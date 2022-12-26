@@ -3,6 +3,8 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Auth;
+use App\Models\Favorite;
 
 class DoctorResource extends JsonResource
 {
@@ -14,6 +16,14 @@ class DoctorResource extends JsonResource
      */
     public function toArray($request)
     {
+        $fav = false;
+        // احنا غلط نكتب لوجيك بالريسورس بس هاي حالة شاذه ما رح تاثر بتم
+        if(Auth::user()){
+        $favorite = Favorite::where('user_id',Auth::user()->id)->where('doctor_id',$this->id)->first();
+            if($favorite){
+                $fav = true ;
+            }
+    }
         return [
 
             'id'=>$this->id,
@@ -23,7 +33,7 @@ class DoctorResource extends JsonResource
             'category_id'=>1,
             'category_name'=>'test',
             'user_count'=>500,
-            // 'rating'=>4.5,
+            'is_favorite'=>$fav,        // 'rating'=>4.5,
             'rating'=>(double)$this?->reviews->avg('points'),
             'experience'=>$this->experience,
             'description'=>(string)$this->description,

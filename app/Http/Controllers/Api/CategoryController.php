@@ -53,9 +53,9 @@ class CategoryController extends ApiController
     public function getBlogs($category_id){
 
     $category = Category::find( $category_id );
-    if( $category->blogs ){
+    if( $category->blogs() ){
 
-        return $this->returnData('data',  BlogResource::collection( $category->blogs ), __('Get  succesfully'));
+        return $this->returnData('data',  BlogResource::collection( $category->blogs() ), __('Get  succesfully'));
     }
 
     return $this->returnError(__('Sorry! Failed to get !'));
@@ -106,7 +106,7 @@ class CategoryController extends ApiController
        public function getDoctors($category_id){
 
         $category = Category::find( $category_id );
-        return $this->returnData('data',  DoctorResource::collection( $category->doctors ), __('Get  succesfully'));
+        return $this->returnData('data',  DoctorResource::collection( $category->doctors() ), __('Get  succesfully'));
 
        }
 
