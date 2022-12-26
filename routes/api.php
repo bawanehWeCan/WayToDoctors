@@ -119,7 +119,7 @@ Route::middleware('changeLang')->group(function () {
     Route::post('clinic/edit/{id}', [ClinicController::class, 'edit']);
 
     //Doctor
-
+    Route::get('doctors', [DoctorController::class, 'pagination']);
     Route::post('doctor-create', [DoctorController::class, 'save']);
     Route::get('doctor/{id}', [DoctorController::class, 'view']);
     Route::get('doctor/delete/{id}', [DoctorController::class, 'delete']);
@@ -349,7 +349,7 @@ Route::get('result/delete/{id}', [ResultController::class, 'delete']);
 Route::middleware(['auth:api'])->group(function () {
 
     //Doctor
-    Route::get('doctors', [DoctorController::class, 'pagination']);
+
     Route::post('doctor-create', [DoctorController::class, 'save']);
     Route::get('doctor/{id}', [DoctorController::class, 'view']);
     Route::get('doctor/delete/{id}', [DoctorController::class, 'delete']);
