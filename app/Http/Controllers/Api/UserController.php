@@ -139,6 +139,7 @@ class UserController extends ApiController
     public function myFavorites()
     {
         // if u use paginate u need to add () after method
+        //push and merge now
         $favorites = Auth::user()->favorites();
         return $this->returnData('data',  DoctorResource::collection( $favorites ), __('Get  succesfully'));
 

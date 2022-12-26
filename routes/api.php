@@ -10,10 +10,14 @@ use App\Http\Controllers\Api\CertificateController;
 use App\Http\Controllers\Api\ClinicController;
 use App\Http\Controllers\Api\CountriesController;
 use App\Http\Controllers\Api\DoctorController;
+use App\Http\Controllers\Api\DoctorUserController;
 use App\Http\Controllers\Api\FaqController;
+use App\Http\Controllers\Api\FavoriteController;
+use App\Http\Controllers\Api\FileController;
 use App\Http\Controllers\Api\HomeController;
 use App\Http\Controllers\Api\IdentityController;
 use App\Http\Controllers\Api\IntroductionController;
+use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\PermissionController;
 use App\Http\Controllers\Api\PictureController;
 use App\Http\Controllers\Api\PlanController;
@@ -27,13 +31,7 @@ use App\Http\Controllers\Api\SliderController;
 use App\Http\Controllers\Api\StudyController;
 use App\Http\Controllers\Api\SubscriptionController;
 use App\Http\Controllers\Api\UserController;
-use App\Http\Controllers\Api\NotificationController;
-use App\Http\Controllers\Api\FavoriteController;
-use App\Http\Controllers\Api\FileController;
-use App\Http\Controllers\Api\DoctorUserController;
 use Illuminate\Support\Facades\Route;
-
-use App\Http\Middleware\ChangeLang;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,15 +57,10 @@ Route::post('/password-otb', [AuthController::class, 'password']);
 
 Route::post('change-password', [AuthController::class, 'changePassword']);
 
-
 Route::post('delete-user/{id}', [AuthController::class, 'delete']);
 
 Route::post('phone-update/{id}', [AuthController::class, 'updatePhone']);
 Route::post('resend-otp/{id}', [AuthController::class, 'resendOTP']);
-
-
-
-
 
 Route::middleware('changeLang')->group(function () {
 
@@ -76,15 +69,12 @@ Route::middleware('changeLang')->group(function () {
 //only those have manage_user permission will get access
     Route::get('categories', [CategoryController::class, 'pagination']);
 
-
     Route::post('category-create', [CategoryController::class, 'save']);
     Route::get('category/{id}', [CategoryController::class, 'view']);
     Route::post('category/edit/{id}', [CategoryController::class, 'edit']);
     Route::get('category/delete/{id}', [CategoryController::class, 'delete']);
 
-
     Route::get('categories-by-type/{type}', [CategoryController::class, 'getCategoryByType']);
-
 
     //faq
     Route::get('faq', [FaqController::class, 'pagination']);
@@ -92,20 +82,12 @@ Route::middleware('changeLang')->group(function () {
     Route::get('faq/{id}', [FaqController::class, 'view']);
     Route::get('faq/delete/{id}', [FaqController::class, 'delete']);
 
-     //Clinic
+    //Clinic
     Route::get('clinics', [ClinicController::class, 'pagination']);
     Route::post('clinic-create', [ClinicController::class, 'save']);
     Route::get('clinic/{id}', [ClinicController::class, 'view']);
     Route::get('clinic/delete/{id}', [ClinicController::class, 'delete']);
     Route::post('clinic/edit/{id}', [ClinicController::class, 'edit']);
-
-    //Doctor
-    Route::get('doctors', [DoctorController::class, 'pagination']);
-    Route::post('doctor-create', [DoctorController::class, 'save']);
-    Route::get('doctor/{id}', [DoctorController::class, 'view']);
-    Route::get('doctor/delete/{id}', [DoctorController::class, 'delete']);
-    Route::post('doctor/edit/{id}', [DoctorController::class, 'edit']);
-    Route::post('doctors/search', [DoctorController::class, 'lookfor']);
 
     Route::post('doctor/add-category/{doctor_id}', [CategoryController::class, 'addToDoctor']);
 
@@ -136,9 +118,8 @@ Route::middleware('changeLang')->group(function () {
     Route::get('clinic/delete/{id}', [ClinicController::class, 'delete']);
     Route::post('clinic/edit/{id}', [ClinicController::class, 'edit']);
 
-
     //Doctor
-    Route::get('doctors', [DoctorController::class, 'list']);
+
     Route::post('doctor-create', [DoctorController::class, 'save']);
     Route::get('doctor/{id}', [DoctorController::class, 'view']);
     Route::get('doctor/delete/{id}', [DoctorController::class, 'delete']);
@@ -151,9 +132,7 @@ Route::middleware('changeLang')->group(function () {
 
     Route::get('get-doctors/{category_id}', [CategoryController::class, 'getDoctors']);
 
-
     Route::post('blog/add-category/{blog_id}', [CategoryController::class, 'addToBlog']);
-
 
     Route::get('blog/get-blogs/{category_id}', [CategoryController::class, 'getBlogs']);
 
@@ -167,9 +146,7 @@ Route::middleware('changeLang')->group(function () {
     Route::post('question/update/{id}', [QuestionController::class, 'edit']);
     Route::get('question/delete/{id}', [QuestionController::class, 'delete']);
 
-
     Route::get('answers', [AnswerController::class, 'pagination']);
-
 
     ############################### section ################################
     Route::get('sections', [SectionController::class, 'list']);
@@ -177,8 +154,6 @@ Route::middleware('changeLang')->group(function () {
     Route::get('section/{id}', [SectionController::class, 'view']);
     Route::post('section/update/{id}', [SectionController::class, 'edit']);
     Route::get('section/delete/{id}', [SectionController::class, 'delete']);
-
-
 
     //Blog
     Route::get('blogs', [BlogController::class, 'list']);
@@ -191,7 +166,6 @@ Route::middleware('changeLang')->group(function () {
     Route::post('blog/add-category/{blog_id}', [CategoryController::class, 'addToBlog']);
 
     Route::get('blog/get-blogs/{category_id}', [CategoryController::class, 'getBlogs']);
-
 
     ############################### question ################################
     Route::get('questions', [QuestionController::class, 'list']);
@@ -207,7 +181,7 @@ Route::middleware('changeLang')->group(function () {
     Route::post('answer/update/{id}', [AnswerController::class, 'edit']);
     Route::get('answer/delete/{id}', [AnswerController::class, 'delete']);
 
-     //Certificate
+    //Certificate
     Route::get('certificates', [CertificateController::class, 'pagination']);
 
     Route::post('certificate-create', [CertificateController::class, 'save']);
@@ -215,14 +189,12 @@ Route::middleware('changeLang')->group(function () {
     Route::get('certificate/delete/{id}', [CertificateController::class, 'delete']);
     Route::post('certificate/edit/{id}', [CertificateController::class, 'edit']);
 
-
     //Study
     Route::get('studies', [StudyController::class, 'list']);
     Route::post('study-create', [StudyController::class, 'save']);
     Route::get('study/{id}', [StudyController::class, 'view']);
     Route::get('study/delete/{id}', [StudyController::class, 'delete']);
     Route::post('study/edit/{id}', [StudyController::class, 'edit']);
-
 
     //Study
     Route::get('studies', [StudyController::class, 'pagination']);
@@ -239,7 +211,7 @@ Route::middleware('changeLang')->group(function () {
     Route::get('introduction/delete/{id}', [IntroductionController::class, 'delete']);
     Route::post('introduction/edit/{id}', [IntroductionController::class, 'edit']);
 
-     //Plan
+    //Plan
     Route::get('plans', [PlanController::class, 'pagination']);
     Route::post('plan-create', [PlanController::class, 'save']);
     Route::get('plan/{id}', [PlanController::class, 'view']);
@@ -257,13 +229,10 @@ Route::middleware('changeLang')->group(function () {
 
     Route::post('send-to-all', [NotificationController::class, 'sendNotiToAll']);
 
-
-
     Route::get('user-doctor/delete/{doctor_id}/{user_id}', [DoctorUserController::class, 'deletebyID']);
 
     Route::get('favorite/delete/{doctor_id}/{user_id}', [FavoriteController::class, 'deletebyID']);
 });
-
 
 //Favorite
 Route::get('favorites', [FavoriteController::class, 'pagination']);
@@ -272,16 +241,12 @@ Route::get('favorite/{id}', [FavoriteController::class, 'view']);
 
 Route::post('favorite/edit/{id}', [FavoriteController::class, 'edit']);
 
-
 //user_doctor
 Route::get('user-doctor', [DoctorUserController::class, 'pagination']);
 Route::post('user-doctor-create', [DoctorUserController::class, 'save']);
 Route::get('user-doctor/{id}', [DoctorUserController::class, 'view']);
 
 Route::post('user-doctor/edit/{id}', [DoctorUserController::class, 'edit']);
-
-
-
 
 //File
 Route::get('files', [FileController::class, 'pagination']);
@@ -295,12 +260,6 @@ Route::post('file/edit/{id}', [FileController::class, 'edit']);
 Route::post('doctor/add-review/{doctor_id}', [ReviewController::class, 'addToDoctor']);
 
 Route::get('doctor/get-reviews/{doctor_id}', [ReviewController::class, 'getByDoctor']);
-
-
-
-
-
-
 
 Route::get('doctor/get-reviews/{doctor_id}', [ReviewController::class, 'getByDoctor']);
 
@@ -328,7 +287,6 @@ Route::get('my-next/{user_id}', [AppointmentController::class, 'myNextAppointmen
 Route::get('my-finished/{user_id}', [AppointmentController::class, 'myFinishedAppointments']);
 Route::get('my-canceled/{user_id}', [AppointmentController::class, 'myCanceledAppointments']);
 Route::get('my-appointments/{user_id}', [AppointmentController::class, 'myAppointments']);
-
 
 //Slider
 Route::get('sliders', [SliderController::class, 'pagination']);
@@ -390,6 +348,14 @@ Route::get('result/delete/{id}', [ResultController::class, 'delete']);
 
 Route::middleware(['auth:api'])->group(function () {
 
+    //Doctor
+    Route::get('doctors', [DoctorController::class, 'pagination']);
+    Route::post('doctor-create', [DoctorController::class, 'save']);
+    Route::get('doctor/{id}', [DoctorController::class, 'view']);
+    Route::get('doctor/delete/{id}', [DoctorController::class, 'delete']);
+    Route::post('doctor/edit/{id}', [DoctorController::class, 'edit']);
+    Route::post('doctors/search', [DoctorController::class, 'lookfor']);
+
     Route::post('result-create', [ResultController::class, 'save']);
 
     Route::get('my-subscriptions', [SubscriptionController::class, 'mySubscription']);
@@ -415,13 +381,11 @@ Route::middleware(['auth:api'])->group(function () {
     Route::post('/user/update/{id}', [UserController::class, 'edit']);
     Route::post('/user/change-role/{id}', [UserController::class, 'changeRole']);
 
-
-   //my favorites doctors
+    //my favorites doctors
     Route::get('my-favorites', [UserController::class, 'myFavorites']);
 
-
     //my doctors
-      Route::get('my-doctors', [UserController::class, 'myDoctors']);
+    Route::get('my-doctors', [UserController::class, 'myDoctors']);
 
     //only those have manage_role permission will get access
     Route::group(['middleware' => 'can:manage_role|manage_user'], function () {
@@ -430,6 +394,7 @@ Route::middleware(['auth:api'])->group(function () {
         Route::get('/role/{id}', [RolesController::class, 'show']);
         Route::get('/role/delete/{id}', [RolesController::class, 'delete']);
         Route::post('/role/change-permission/{id}', [RolesController::class, 'changePermissions']);
+
     });
 
     //only those have manage_permission permission will get access
