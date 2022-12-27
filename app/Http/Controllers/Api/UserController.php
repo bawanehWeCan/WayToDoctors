@@ -16,6 +16,7 @@ use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends ApiController
 {
@@ -101,10 +102,17 @@ class UserController extends ApiController
                 'phone',
                 'step',
                 'active',
-
-                'password',
+                'password'=> Hash::make($request->password),
             ])
         );
+
+        if ($request->password) {
+
+            $user->update([
+                    'password' => Hash::make($request->password),
+                ]);
+
+        }
         $pr = Profile::where('user_id',$user->id)->first();
         if( $pr ){
             $pr->update($request->except([
