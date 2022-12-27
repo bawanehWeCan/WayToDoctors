@@ -94,7 +94,7 @@ class Repository{
 
 
     public function searchManyByKey($key, $value){
-        $data = $this->model->where( $key, 'like', '%' . $value . '%' )->get();
+        $data = $this->model->where( $key, 'like', '%' . $value . '%' )->paginate(10);
         return $data;
     }
 
