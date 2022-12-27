@@ -39,7 +39,7 @@ class Doctor extends Model
     }
 
     public function reviews(){
-        return $this->morphToMany( Review::class, 'reviewable' )->paginate(10);
+        return $this->morphToMany( Review::class, 'reviewable' );
     }
 
     public function categories(){
