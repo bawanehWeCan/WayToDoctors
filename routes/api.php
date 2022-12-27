@@ -370,7 +370,7 @@ Route::middleware(['auth:api'])->group(function () {
     Route::get('logout', [AuthController::class, 'logout']);
 
     Route::get('profile', [AuthController::class, 'profile']);
-    Route::post('change-password', [AuthController::class, 'changePassword']);
+
     Route::post('update-profile', [AuthController::class, 'updateProfile']);
 
     //only those have manage_user permission will get access
