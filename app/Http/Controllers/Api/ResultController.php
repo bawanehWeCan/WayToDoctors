@@ -81,7 +81,7 @@ class ResultController extends ApiController
     public function myResult(ResultRequest $request){
 
         //$data = $this->model->where('user_id', Auth::user()->id)->get();
-        $data = Section::all();
+        $data = Section::paginate(10);
         return $this->returnData('data',  MyResultResource::collection( $data ), __('Get  succesfully'));
     }
 }
