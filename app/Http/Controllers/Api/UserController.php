@@ -113,6 +113,7 @@ class UserController extends ApiController
                 ]);
 
         }
+
         $pr = Profile::where('user_id',$user->id)->first();
         if( $pr ){
             $pr->update($request->except([
@@ -127,6 +128,7 @@ class UserController extends ApiController
             ]));
 
             return $this->returnData('user', UserResource::make($user), 'User updated successfully');
+
         }
 
         $user->profile()->updateOrCreate($request->except([
@@ -141,6 +143,8 @@ class UserController extends ApiController
         ]));
 
         return $this->returnData('user', UserResource::make($user), 'User updated successfully');
+
+
     }
 
 
