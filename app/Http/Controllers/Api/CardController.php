@@ -38,8 +38,9 @@ class CardController extends ApiController
 
 
         // $user_id = Auth::user()->id;
-         $user=Auth::user();
-         return $this->returnData('data',  MyCardsResource::collection( $user->cards ), __('Get  succesfully'));
+        //  $user=Auth::user();
+         $cards = Card::where('user_id',Auth::user()->id)->paginate(10) ;
+         return $this->returnData('data',  MyCardsResource::collection( $cards ), __('Get  succesfully'));
 
      }
 }

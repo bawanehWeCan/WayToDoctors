@@ -133,9 +133,11 @@ class AppointmentController extends ApiController
 
     public function myAppointments($user_id){
 
-        $user = User::find( $user_id );
 
-        return $this->returnData('data',  $this->resource::collection($user->appointments ), __('Get  succesfully'));
+        // $user = User::find( $user_id );
+        $appointments = Appointment::where('user_id',$user_id)->paginate(10) ;
+
+        return $this->returnData('data',  $this->resource::collection($appointments ), __('Get  succesfully'));
 
     }
 

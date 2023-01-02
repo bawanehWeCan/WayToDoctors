@@ -56,7 +56,8 @@ class ReviewController extends ApiController
         // dd( $doctor );
 
 
-        return $this->returnData('data',  $this->resource::collection( $doctor->reviews ), __('Get  succesfully'));
+        return $this->returnData('data',  $this->resource::collection( $doctor->getReviews() ), __('Get  succesfully'));
+
     }
 
 }
