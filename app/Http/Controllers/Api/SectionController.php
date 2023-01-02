@@ -22,6 +22,17 @@ class SectionController extends ApiController
         $this->repositry =  new Repository($this->model);
     }
 
+
+    public function list()
+    {
+
+        $data =  Section::where('id','!=',1000)->get();
+
+        return $this->returnData( 'data' , $this->resource::collection( $data ), __('Succesfully'));
+
+
+    }
+
     public function save( Request $request ){
 
         return $this->store( $request->all() );
