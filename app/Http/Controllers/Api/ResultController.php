@@ -59,11 +59,12 @@ class ResultController extends ApiController
 
                 $arr['question'] = $q;
 
-                dd($arr);
-
-                return;
-
-
+                return response()->json([
+                    'status' => true,
+                    'code' => Response::HTTP_OK,
+                    'msg' => $msg,
+                    'data' => $arr,
+                ], Response::HTTP_OK);
 
             }
             return $this->store( $request->all() );
