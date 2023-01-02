@@ -63,7 +63,7 @@ class ResultController extends ApiController
                 return response()->json([
                     'status' => true,
                     'code' => Response::HTTP_OK,
-                    'msg' => $msg,
+                    'msg' => 'Done',
                     'data' => $arr,
                 ], Response::HTTP_OK);
 
