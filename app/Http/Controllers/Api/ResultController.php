@@ -9,6 +9,7 @@ use App\Repositories\Repository;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ResultRequest;
 use App\Http\Resources\ResultResource;
+use App\Http\Resources\QuestionResource;
 use App\Http\Resources\MyResultResource;
 use App\Http\Resources\SectionResource;
 use App\Http\Controllers\ApiController;
@@ -56,9 +57,9 @@ class ResultController extends ApiController
                 $r->user_id = Auth::user()->id;
                 $r->save();
 
-                $arr['result'] = $r;
+                $arr['result'] = new ResultResource( $r );
 
-                $arr['question'] = $q;
+                $arr['question'] = new QuestionResource( $q );
 
                 return response()->json([
                     'status' => true,
@@ -85,7 +86,9 @@ class ResultController extends ApiController
 
 
         if ($model) {
-            $arr['result'] = $model;
+            $arr['result'] = new ResultResource( $r );
+
+
 
             $arr['question'] = [];
 
