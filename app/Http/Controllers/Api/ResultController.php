@@ -17,6 +17,7 @@ use App\Models\Question;
 use App\Models\User;
 use App\Models\Section;
 use Auth;
+use Illuminate\Http\Response;
 
 class ResultController extends ApiController
 {
