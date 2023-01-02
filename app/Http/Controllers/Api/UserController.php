@@ -107,6 +107,8 @@ class UserController extends ApiController
             ])
         );
 
+
+
         if ($request->password) {
 
             $user->update([
@@ -125,6 +127,7 @@ class UserController extends ApiController
                 'active',
                 'image',
                 'password',
+                'question_number'
 
             ]));
 
@@ -140,6 +143,7 @@ class UserController extends ApiController
             'active',
             'image',
             'password',
+            'question_number'
 
         ]));
 
