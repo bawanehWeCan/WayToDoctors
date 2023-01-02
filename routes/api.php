@@ -376,7 +376,7 @@ Route::middleware(['auth:api'])->group(function () {
     //only those have manage_user permission will get access
     Route::get('/users', [UserController::class, 'pagination']);
     Route::post('/user-create', [UserController::class, 'save']);
-    Route::get('/user/{id}', [AuthController::class, 'profile']);
+    Route::get('/user/{id}', [AuthController::class, 'useProfile']);
     Route::get('/user/delete/{id}', [UserController::class, 'delete']);
     Route::post('/user/update/{id}', [UserController::class, 'edit']);
     Route::post('/user/change-role/{id}', [UserController::class, 'changeRole']);

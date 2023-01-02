@@ -133,6 +133,11 @@ class AuthController extends Controller
         return $this->returnData('user', UserResource::make(Auth::user()), 'successful');
     }
 
+    public function userProfile($id)
+    {
+        return $this->returnData('user', UserResource::make(User::find($id)), 'successful');
+    }
+
     public function password(Request $request)
     {
         $user = User::where('phone', $request->phone)->first();
