@@ -51,11 +51,12 @@ class ResultController extends ApiController
                 $r = new Result();
                 $r->question_id = $request->question_id;
                 $r->answer_id = $request->answer_id;
+                $r->section_id  = $question->section->id;
                 $r->user_id = Auth::user()->id;
                 $r->save();
 
                 $arr['result'] = $r;
-                $arr['section_id'] = $question->section->id;
+
                 $arr['question'] = $q;
 
                 dd($arr);
