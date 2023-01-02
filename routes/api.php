@@ -232,6 +232,24 @@ Route::middleware('changeLang')->group(function () {
     Route::get('user-doctor/delete/{doctor_id}/{user_id}', [DoctorUserController::class, 'deletebyID']);
 
     Route::get('favorite/delete/{doctor_id}/{user_id}', [FavoriteController::class, 'deletebyID']);
+
+
+        //Country
+        Route::get('countries', [CountryController::class, 'list']);
+        Route::post('country-create', [CountryController::class, 'save']);
+        Route::get('country/{id}', [CountryController::class, 'view']);
+        Route::get('country/delete/{id}', [CountryController::class, 'delete']);
+        Route::post('country/edit/{id}', [CountryController::class, 'edit']);
+
+
+        //City
+        Route::get('cities', [CityController::class, 'list']);
+        Route::post('city-create', [CityController::class, 'save']);
+        Route::get('city/{id}', [CityController::class, 'view']);
+        Route::get('city/delete/{id}', [CityController::class, 'delete']);
+        Route::post('city/edit/{id}', [CityController::class, 'edit']);
+
+        Route::get('cities/{country_id}', [CityController::class, 'getCitiesByCountry']);
 });
 
 //Favorite
