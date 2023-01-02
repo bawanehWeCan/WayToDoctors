@@ -79,6 +79,29 @@ class ResultController extends ApiController
 
     }
 
+    public function store( $data )
+    {
+        $model = $this->repositry->save( $data );
+
+
+        if ($model) {
+            $arr['result'] = $model;
+
+            $arr['question'] = [];
+
+            return response()->json([
+                'status' => true,
+                'code' => Response::HTTP_OK,
+                'msg' => 'Done',
+                'data' => $arr,
+            ], Response::HTTP_OK);
+
+        }
+
+        return $this->returnError(__('Sorry! Failed to create !'));
+    }
+
+
     public function edit($id, ResultRequest $request){
         $question = Question::find($request->question_id);
         if (!$question) {
