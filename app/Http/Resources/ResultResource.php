@@ -19,7 +19,7 @@ class ResultResource extends JsonResource
             'question'=>$this->question->question,
             'answer'=>$this?->answerRelation?->answer,
             'answer'=>$this?->answer,
-            'is_correct'=>$this->answerRelation->correct
+            'is_correct'=>$this?->answerRelation?->correct
         ];
     }
 }
