@@ -298,6 +298,8 @@ class AuthController extends Controller
         $user = User::where('phone', $phone)->first();
 
         if ((string)$user->otp == (string)$otp) {
+            $user->active = 1;
+            $user->save();
             return true;
         }
 
