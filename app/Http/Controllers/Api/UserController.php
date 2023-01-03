@@ -103,7 +103,8 @@ class UserController extends ApiController
                 'step',
                 'active',
                 'password'=> Hash::make($request->password),
-                'question_number'
+                'question_number',
+
             ])
         );
 

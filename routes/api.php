@@ -31,6 +31,9 @@ use App\Http\Controllers\Api\SliderController;
 use App\Http\Controllers\Api\StudyController;
 use App\Http\Controllers\Api\SubscriptionController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\CountryController;
+use App\Http\Controllers\Api\CityController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
