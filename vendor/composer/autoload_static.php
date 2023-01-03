@@ -772,6 +772,7 @@ class ComposerStaticInit616415153d46cf31155399917f6be504
         'App\\Http\\Resources\\CatResource' => __DIR__ . '/../..' . '/app/Http/Resources/CatResource.php',
         'App\\Http\\Resources\\CategoryResource' => __DIR__ . '/../..' . '/app/Http/Resources/CategoryResource.php',
         'App\\Http\\Resources\\CertificateResource' => __DIR__ . '/../..' . '/app/Http/Resources/CertificateResource.php',
+        'App\\Http\\Resources\\CitiesResource' => __DIR__ . '/../..' . '/app/Http/Resources/CitiesResource.php',
         'App\\Http\\Resources\\CityResource' => __DIR__ . '/../..' . '/app/Http/Resources/CityResource.php',
         'App\\Http\\Resources\\ClinicResource' => __DIR__ . '/../..' . '/app/Http/Resources/ClinicResource.php',
         'App\\Http\\Resources\\CountryResource' => __DIR__ . '/../..' . '/app/Http/Resources/CountryResource.php',

@@ -51,8 +51,15 @@ class ResultController extends ApiController
             if( $q ){
                 $arr = array();
                 $r = new Result();
+                if($request->answer)
+{
+    $r->answer_id = 1;
+    $r->answer=$request->answer;
+}
+else{
+    $r->answer_id = $request->answer_id;
+}
                 $r->question_id = $request->question_id;
-                $r->answer_id = $request->answer_id;
                 $r->section_id  = $question->section->id;
                 $r->user_id = Auth::user()->id;
                 $r->save();

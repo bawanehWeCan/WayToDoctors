@@ -85,6 +85,7 @@ return array(
     'App\\Http\\Resources\\CatResource' => $baseDir . '/app/Http/Resources/CatResource.php',
     'App\\Http\\Resources\\CategoryResource' => $baseDir . '/app/Http/Resources/CategoryResource.php',
     'App\\Http\\Resources\\CertificateResource' => $baseDir . '/app/Http/Resources/CertificateResource.php',
+    'App\\Http\\Resources\\CitiesResource' => $baseDir . '/app/Http/Resources/CitiesResource.php',
     'App\\Http\\Resources\\CityResource' => $baseDir . '/app/Http/Resources/CityResource.php',
     'App\\Http\\Resources\\ClinicResource' => $baseDir . '/app/Http/Resources/ClinicResource.php',
     'App\\Http\\Resources\\CountryResource' => $baseDir . '/app/Http/Resources/CountryResource.php',
