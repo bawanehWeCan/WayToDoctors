@@ -16,7 +16,7 @@ class Result extends Model
     public function question(){
         return $this->belongsTo(Question::class);
     }
-    public function answer(){
+    public function answerRelation(){
         return $this->belongsTo(Answer::class);
     }
     public function user(){
