@@ -85,7 +85,7 @@ class ResultController extends ApiController
         $model = $this->repositry->save($data);
 
         if ($model) {
-            $arr['result'] = new ResultResource($r);
+            $arr['result'] = new ResultResource($model );
 
             $arr['question'] = [];
 
