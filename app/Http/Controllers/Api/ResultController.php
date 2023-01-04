@@ -49,7 +49,7 @@ class ResultController extends ApiController
         $user->question_number = $question->id;
         $user->save();
 
-        $q = Question::where('condition', $request->answer_id)->first();
+        $q = Question::where('condition', $request->answer_id)->get();
         if ($q) {
             $arr = array();
             $r = new Result();
