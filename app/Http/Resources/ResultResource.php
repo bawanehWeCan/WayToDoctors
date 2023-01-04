@@ -17,7 +17,7 @@ class ResultResource extends JsonResource
         return [
             'id'=>$this->id,
             'question'=>$this->question->question,
-            'answer'=>$this?->answerRelation?->answer,
+            'answer_id'=>$this?->answerRelation?->answer,
             'answer'=>$this?->answer,
             'is_correct'=>(int)$this?->answerRelation?->correct
         ];
