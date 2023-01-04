@@ -66,6 +66,8 @@ class ResultController extends ApiController
 
             $arr['result'] = new ResultResource($r);
 
+            $arr['next'] =(int)Question::where('section_id', $request->section_id)->where('id', '>',$request->question_id)->min('id');
+
             $arr['question'] = new QuestionResource($q);
 
             return response()->json([
