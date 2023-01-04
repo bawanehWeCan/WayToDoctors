@@ -66,7 +66,8 @@ class ResultController extends ApiController
 
             $arr['result'] = new ResultResource($r);
 
-            $arr['next'] =(int)Question::where('section_id', $request->section_id)->where('id', '>',$request->question_id)->min('id');
+            $arr['next_question'] =(int)Question::where('section_id', $request->section_id)->where('id', '>',$request->question_id)->min('id');
+            $arr['next_section'] =(int)Section::where('id', '>',$request->section_id)->min('id');
 
             $arr['question'] = new QuestionResource($q);
 
@@ -77,19 +78,15 @@ class ResultController extends ApiController
                 'data' => $arr,
             ], Response::HTTP_OK);
         }
-        return $this->store($request->all());
-    }
-
-    public function store($data)
-    {
-        $model = $this->repositry->save($data);
+        $model = $this->repositry->save($request->all());
 
         if ($model) {
             $arr['result'] = new ResultResource($model);
 
-            $arr['next'] =(int)Question::where('section_id', $data->section_id)->where('id', '>',$data->question_id)->min('id');
+            $arr['next_question'] =(int)Question::where('section_id', $request->section_id)->where('id', '>',$request->question_id)->min('id');
+            $arr['next_section'] =(int)Section::where('id', '>',$request->section_id)->min('id');
 
-            $arr['question'] = [];
+            $arr['condtion_question'] = [];
 
             return response()->json([
                 'status' => true,
@@ -101,6 +98,8 @@ class ResultController extends ApiController
 
         return $this->returnError(__('Sorry! Failed to create !'));
     }
+
+
 
     public function edit($id, ResultRequest $request)
     {
