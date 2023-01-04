@@ -34,8 +34,9 @@ class ResultController extends ApiController
         if (!$question) {
             return $this->returnError(__("Sorry question is not exist"));
         }
-        if ($this->checkQuestion($request)) {
-            $userResult = Result::where('question_id', $request->question_id)->where('user_id', Auth::user()->id)->first();
+        $userResult = Result::where('question_id', $request->question_id)->where('user_id', Auth::user()->id)->first();
+        if ($userResult) {
+
             $userResult->delete();
         }
         $request['user_id'] = Auth::user()->id;
