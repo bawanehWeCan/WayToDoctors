@@ -35,49 +35,46 @@ class ResultController extends ApiController
             return $this->returnError(__("Sorry question is not exist"));
         }
         if ($this->checkQuestion($request)) {
-            $request['user_id'] = Auth::user()->id;
-            $request['section_id'] = $question->section->id;
-            $user = Auth::user();
-
-            //dd( $user );
-            //$user->step=$request->step_id;
-            $user->step = $question->section->id;
-            $user->question_number = $question->id;
-            $user->save();
-
-            $q = Question::where('condition', $request->answer_id)->first();
-            if ($q) {
-                $arr = array();
-                $r = new Result();
-                if (!empty($request->answer) && isset($request->answer)) {
-                    $r->answer_id = 1;
-                    $r->answer = $request->answer;
-                } else {
-                    $r->answer_id = $request->answer_id;
-                }
-                $r->question_id = $request->question_id;
-                $r->section_id = $question->section->id;
-                $r->user_id = Auth::user()->id;
-                $r->save();
-
-                $arr['result'] = new ResultResource($r);
-
-                $arr['question'] = new QuestionResource($q);
-
-                return response()->json([
-                    'status' => true,
-                    'code' => Response::HTTP_OK,
-                    'msg' => 'Done',
-                    'data' => $arr,
-                ], Response::HTTP_OK);
-
-            }
-            return $this->store($request->all());
-
-        } else {
-            return $this->returnError(__("Sorry This Answer is not allowed for this question"));
+            $userResult = $this->model->where('question_id', $request->question_id)->where('user_id', Auth::user()->id)->first();
+            $userResult->delete();
         }
+        $request['user_id'] = Auth::user()->id;
+        $request['section_id'] = $question->section->id;
+        $user = Auth::user();
 
+        //dd( $user );
+        //$user->step=$request->step_id;
+        $user->step = $question->section->id;
+        $user->question_number = $question->id;
+        $user->save();
+
+        $q = Question::where('condition', $request->answer_id)->first();
+        if ($q) {
+            $arr = array();
+            $r = new Result();
+            if (!empty($request->answer) && isset($request->answer)) {
+                $r->answer_id = 1;
+                $r->answer = $request->answer;
+            } else {
+                $r->answer_id = $request->answer_id;
+            }
+            $r->question_id = $request->question_id;
+            $r->section_id = $question->section->id;
+            $r->user_id = Auth::user()->id;
+            $r->save();
+
+            $arr['result'] = new ResultResource($r);
+
+            $arr['question'] = new QuestionResource($q);
+
+            return response()->json([
+                'status' => true,
+                'code' => Response::HTTP_OK,
+                'msg' => 'Done',
+                'data' => $arr,
+            ], Response::HTTP_OK);
+        }
+        return $this->store($request->all());
     }
 
     public function store($data)
@@ -85,7 +82,7 @@ class ResultController extends ApiController
         $model = $this->repositry->save($data);
 
         if ($model) {
-            $arr['result'] = new ResultResource($model );
+            $arr['result'] = new ResultResource($model);
 
             $arr['question'] = [];
 
@@ -95,7 +92,6 @@ class ResultController extends ApiController
                 'msg' => 'Done',
                 'data' => $arr,
             ], Response::HTTP_OK);
-
         }
 
         return $this->returnError(__('Sorry! Failed to create !'));
@@ -112,7 +108,6 @@ class ResultController extends ApiController
         } else {
             return $this->returnError(__("Sorry This Answer is not allowed for this question"));
         }
-
     }
 
     public function checkQuestion($request)
@@ -121,7 +116,6 @@ class ResultController extends ApiController
         $userResult = $this->model->where('question_id', $request->question_id)->where('user_id', Auth::user()->id)->first();
 
         return empty($userResult);
-
     }
 
     public function myResult(ResultRequest $request)
