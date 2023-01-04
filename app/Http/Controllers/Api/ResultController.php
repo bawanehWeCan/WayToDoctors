@@ -64,11 +64,11 @@ class ResultController extends ApiController
             $r->user_id = Auth::user()->id;
             $r->save();
 
-            // $arr['result'] = new ResultResource($r);
+            $arr['result'] = new ResultResource($r);
 
             $arr['next'] =(int)Question::where('section_id', $request->section_id)->where('id', '>',$request->question_id)->min('id');
 
-            // $arr['question'] = new QuestionResource($q);
+            $arr['question'] = new QuestionResource($q);
 
             return response()->json([
                 'status' => true,
@@ -86,6 +86,8 @@ class ResultController extends ApiController
 
         if ($model) {
             $arr['result'] = new ResultResource($model);
+
+            $arr['next'] =(int)Question::where('section_id', $request->section_id)->where('id', '>',$request->question_id)->min('id');
 
             $arr['question'] = [];
 
