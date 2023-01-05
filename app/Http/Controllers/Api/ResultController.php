@@ -49,7 +49,7 @@ class ResultController extends ApiController
         $user->question_number = $question->id;
         $user->save();
 
-        $q = Question::where('condition', $request->answer_id)->first();
+        $q = Question::where('condition', $request->answer_id)->get();
         if ($q) {
             $arr = array();
             $r = new Result();
@@ -69,7 +69,7 @@ class ResultController extends ApiController
             $arr['next_question'] =(int)Question::where('section_id', $request->section_id)->where('id', '>',$request->question_id)->min('id');
             $arr['next_section'] =(int)Section::where('id', '>',$request->section_id)->min('id');
 
-            $arr['condtion_question'] = new QuestionResource($q);
+            $arr['condtion_question'] =  QuestionResource::collection($q);
 
             return response()->json([
                 'status' => true,
