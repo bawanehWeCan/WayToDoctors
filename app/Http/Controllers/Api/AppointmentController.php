@@ -158,4 +158,23 @@ class AppointmentController extends ApiController
         return $this->returnData('data',  $this->resource::collection($appointments ), __('Get  succesfully'));
 
     }
+
+    public function checkType($doctor_id){
+
+
+        $check = Appointment::where('doctor_id',$doctor_id)->where('type','Urgent')->get();
+
+       if($check){
+
+        return $this->returnSuccessMessage(__('True'));
+
+       }
+
+       else{
+
+        return $this->returnError(__('False'));
+
+       }
+
+    }
 }
