@@ -33,6 +33,7 @@ use App\Http\Controllers\Api\SubscriptionController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\CountryController;
 use App\Http\Controllers\Api\CityController;
+use App\Http\Controllers\Api\PageController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -432,3 +433,12 @@ Route::middleware(['auth:api'])->group(function () {
 // Route::get('certificate/{id}', [CertificateController::class, 'profile']);
 // Route::get('certificate/delete/{id}', [CertificateController::class, 'delete']);
 Route::get('country-list', [CountriesController::class, 'getCountries']);
+
+
+ //pages
+
+ Route::get('pages', [PageController::class, 'list']);
+ Route::post('pages-create', [PageController::class, 'save']);
+ Route::get('page/{id}', [PageController::class, 'view']);
+ Route::get('page/delete/{id}', [PageController::class, 'delete']);
+ Route::post('page/edit/{id}', [PageController::class, 'edit']);
