@@ -164,7 +164,7 @@ class AppointmentController extends ApiController
 
         $check = Appointment::where('doctor_id',$doctor_id)->where('type','Urgent')->get();
 
-       if($check){
+       if(Count($check) > 0){
 
         return $this->returnSuccessMessage(__('True'));
 
