@@ -19,6 +19,10 @@ class Appointment extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function clinic(){
+        return $this->belongsTo(Clinic::class);
+    }
+
     public function files(){
         return $this->hasMany(File::class);
     }

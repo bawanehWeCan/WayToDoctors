@@ -11,4 +11,8 @@ class Clinic extends Model
     use HasFactory, HasTranslations;
     protected $guarded=[];
     public $translatable = ['name'];
+
+    public function appointments(){
+        return $this->hasMany(Appointment::class);
+    }
 }
