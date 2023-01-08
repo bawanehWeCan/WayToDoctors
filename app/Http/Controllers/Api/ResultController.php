@@ -68,7 +68,7 @@ class ResultController extends ApiController
 
             $arr['result'] = new ResultResource($r);
 
-            $arr['next_question'] =(int)Question::where('section_id', $request->section_id)->where('id', '>',$request->question_id)->min('id');
+            $arr['next_question'] =Question::where('section_id', $request->section_id)->where('id', '>',$request->question_id)->min('id');
             $arr['next_section'] =(int)Section::where('id', '>',$request->section_id)->min('id');
 
             $arr['condtion_question'] =  QuestionResource::collection($q);
@@ -85,7 +85,7 @@ class ResultController extends ApiController
         if ($model) {
             $arr['result'] = new ResultResource($model);
 
-            $arr['next_question'] =(int)Question::where('section_id', $request->section_id)->where('id', '>',$request->question_id)->min('id');
+            $arr['next_question'] =Question::where('section_id', $request->section_id)->where('id', '>',$request->question_id)->min('id');
             $arr['next_section'] =(int)Section::where('id', '>',$request->section_id)->min('id');
 
             $arr['condtion_question'] = [];
