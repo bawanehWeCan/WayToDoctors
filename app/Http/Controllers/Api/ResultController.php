@@ -59,6 +59,8 @@ class ResultController extends ApiController
             } else {
                 $r->answer_id = $request->answer_id;
             }
+
+
             $r->question_id = $request->question_id;
             $r->section_id = $question->section->id;
             $r->user_id = Auth::user()->id;
@@ -66,8 +68,15 @@ class ResultController extends ApiController
 
             $arr['result'] = new ResultResource($r);
 
-            $arr['next_question'] =(int)Question::where('section_id', $request->section_id)->where('id', '>',$request->question_id)->min('id');
-            $arr['next_section'] =(int)Section::where('id', '>',$request->section_id)->min('id');
+            $next = (int)Question::where('section_id', $request->section_id)->where('id', '>',$request->question_id)->min('id');
+            $next_section = (int)Section::where('id', '>',$request->section_id)->min('id');
+
+            if( $next == 0 ){
+                $next = Question::where('section_id', $next_section)->first()->id;
+            }
+
+            $arr['next_question'] = $next;
+            $arr['next_section'] =$next_section;
 
             $arr['condtion_question'] =  QuestionResource::collection($q);
 
@@ -83,8 +92,15 @@ class ResultController extends ApiController
         if ($model) {
             $arr['result'] = new ResultResource($model);
 
-            $arr['next_question'] =(int)Question::where('section_id', $request->section_id)->where('id', '>',$request->question_id)->min('id');
-            $arr['next_section'] =(int)Section::where('id', '>',$request->section_id)->min('id');
+            $next = (int)Question::where('section_id', $request->section_id)->where('id', '>',$request->question_id)->min('id');
+            $next_section = (int)Section::where('id', '>',$request->section_id)->min('id');
+
+            if( $next == 0 ){
+                $next = Question::where('section_id', $next_section)->first()->id;
+            }
+
+            $arr['next_question'] = $next;
+            $arr['next_section'] =$next_section;
 
             $arr['condtion_question'] = [];
 
