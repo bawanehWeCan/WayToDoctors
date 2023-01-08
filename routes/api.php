@@ -309,6 +309,7 @@ Route::get('my-next/{user_id}', [AppointmentController::class, 'myNextAppointmen
 Route::get('my-finished/{user_id}', [AppointmentController::class, 'myFinishedAppointments']);
 Route::get('my-canceled/{user_id}', [AppointmentController::class, 'myCanceledAppointments']);
 Route::get('my-appointments/{user_id}', [AppointmentController::class, 'myAppointments']);
+Route::get('appointments-by-doctor/{doctor_id}', [AppointmentController::class, 'appointmentsByDoctor']);
 
 //Slider
 Route::get('sliders', [SliderController::class, 'pagination']);
