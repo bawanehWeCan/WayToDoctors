@@ -371,6 +371,10 @@ Route::get('result/{id}', [ResultController::class, 'view']);
 Route::post('result/update/{id}', [ResultController::class, 'edit']);
 Route::get('result/delete/{id}', [ResultController::class, 'delete']);
 
+//check type of doctor
+
+Route::get('check-type-doctor/{doctor_id}', [AppointmentController::class, 'checkType']);
+
 Route::middleware(['auth:api'])->group(function () {
 
     //Doctor
