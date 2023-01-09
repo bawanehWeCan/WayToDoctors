@@ -151,7 +151,7 @@ class AppointmentController extends ApiController
     }
 
     public function appointmentsByClinic($clinic_id){
-
+//هي شغالة ما احلاها
 
         $appointments = Appointment::where('clinic_id',$clinic_id)->paginate(10) ;
 
@@ -180,6 +180,11 @@ class AppointmentController extends ApiController
     }
 
     public function getCountersForDoctor($doctor_id){
+        // هاي الي خربانه مو ؟؟موو
+
+
+        echo 'metod work';
+        return;
 
         $data = array();
 
