@@ -164,6 +164,7 @@ class AppointmentController extends ApiController
 
         $check = Appointment::where('doctor_id',$doctor_id)->where('type','Urgent')->get();
 
+
        if(Count($check) > 0){
 
         return $this->returnSuccessMessage(__('True'));
@@ -177,4 +178,18 @@ class AppointmentController extends ApiController
        }
 
     }
+
+    public function getCounters(){
+
+        $data = array();
+
+        $data['completed']=Appointment::where('status','Finished')->count();
+        // dd($data['complete']);
+        $data['notCompleted']=Appointment::where('status','!=','Finished')->count();
+
+        return $this->returnData( 'data' ,  $data , __('Succesfully'));
+
+
+       }
+
 }

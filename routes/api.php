@@ -375,6 +375,9 @@ Route::get('result/delete/{id}', [ResultController::class, 'delete']);
 
 Route::get('check-type-doctor/{doctor_id}', [AppointmentController::class, 'checkType']);
 
+//counter of appointment
+Route::get('appointments-counter', [AppointmentController::class, 'getCounters']);
+
 Route::middleware(['auth:api'])->group(function () {
 
     //Doctor
