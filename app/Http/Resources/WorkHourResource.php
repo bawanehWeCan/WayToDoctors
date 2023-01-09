@@ -22,7 +22,7 @@ class WorkHourResource extends JsonResource
             'status'=>$this->status,
             'start_at'=>$this->start_at,
             'end_at'=>$this->end_at,
-            'doctor_id'=>$this?->doctor->id,
+            'doctor_id'=>$this->doctor?->id,
             'clinic_id'=>$this->clinic?->id,
 
         ];

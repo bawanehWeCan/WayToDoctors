@@ -179,13 +179,39 @@ class AppointmentController extends ApiController
 
     }
 
-    public function getCounters(){
+    public function getCountersForDoctor($doctor_id){
 
         $data = array();
 
-        $data['completed']=Appointment::where('status','Finished')->count();
+        $data['completed']=Appointment::where('doctor_id',$doctor_id)->where('status','Finished')->count();
         // dd($data['complete']);
-        $data['notCompleted']=Appointment::where('status','!=','Finished')->count();
+        $data['notCompleted']=Appointment::where('doctor_id',$doctor_id)->where('status','!=','Finished')->count();
+
+        return $this->returnData( 'data' ,  $data , __('Succesfully'));
+
+
+       }
+
+       public function getCountersForClinic($clinic_id){
+
+        $data = array();
+
+        $data['completed']=Appointment::where('clinic_id',$clinic_id)->where('status','Finished')->count();
+        // dd($data['complete']);
+        $data['notCompleted']=Appointment::where('clinic_id',$clinic_id)->where('status','!=','Finished')->count();
+
+        return $this->returnData( 'data' ,  $data , __('Succesfully'));
+
+
+       }
+
+       public function getCounters(){
+
+        $data = array();
+
+        $data['completed']=Appointment::where('doctor_id',$doctor_id)->where('status','Finished')->count();
+        // dd($data['complete']);
+        $data['notCompleted']=Appointment::where('doctor_id',$doctor_id)->where('status','!=','Finished')->count();
 
         return $this->returnData( 'data' ,  $data , __('Succesfully'));
 
