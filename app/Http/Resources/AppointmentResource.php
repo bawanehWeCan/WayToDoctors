@@ -30,8 +30,8 @@ class AppointmentResource extends JsonResource
 
 
             // 'user'=>new UserResource($this->user),
-            'user_id'=>$this->user_id,
-            'clinic_id'=>$this?->clinic_id,
+            'user_id'=>$this->user->id,
+            'clinic_id'=>$this?->clinic->id,
             'files'=> FileResource::collection($this?->files),
 
         ];

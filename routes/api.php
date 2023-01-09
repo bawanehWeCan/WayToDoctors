@@ -34,6 +34,7 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\CountryController;
 use App\Http\Controllers\Api\CityController;
 use App\Http\Controllers\Api\PageController;
+use App\Http\Controllers\Api\WorkHourController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -350,6 +351,8 @@ Route::get('identity/{id}', [IdentityController::class, 'view']);
 Route::get('identity/delete/{id}', [IdentityController::class, 'delete']);
 Route::post('identity/edit/{id}', [IdentityController::class, 'edit']);
 
+
+
 //Home
 Route::get('home-page', [HomeController::class, 'homePage']);
 
@@ -383,6 +386,13 @@ Route::post('appointments-doctor-by-date', [AppointmentController::class, 'appBy
 
 Route::post('appointments-clinic-by-date', [AppointmentController::class, 'appByDateForClinic']);
 
+//WorkHour
+Route::get('workhours', [WorkHourController::class, 'pagination']);
+Route::post('workhour-create', [WorkHourController::class, 'save']);
+Route::get('workhour/{id}', [WorkHourController::class, 'view']);
+Route::get('workhour/delete/{id}', [WorkHourController::class, 'delete']);
+Route::post('workhour/edit/{id}', [WorkHourController::class, 'edit']);
+
 Route::middleware(['auth:api'])->group(function () {
 
     //Doctor
@@ -395,7 +405,7 @@ Route::middleware(['auth:api'])->group(function () {
 
     Route::post('result-create', [ResultController::class, 'save']);
 
-    Route::get('my-subscriptions', [SubscriptionController::class, 'mySubscription']);
+    Route::get('my-subscriptions/{user_id}', [SubscriptionController::class, 'mySubscription']);
 
     Route::get('my-cards', [CardController::class, 'myCards']);
 
