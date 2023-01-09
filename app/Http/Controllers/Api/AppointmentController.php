@@ -192,4 +192,22 @@ class AppointmentController extends ApiController
 
        }
 
+       public function appByDateForDoctor(Request $request){
+
+
+        $appointments = Appointment::where('doctor_id',$request->doctor_id)->where('date',$request->date)->paginate(10) ;
+
+        return $this->returnData('data',  $this->resource::collection($appointments ), __('Get  succesfully'));
+
+    }
+
+    public function appByDateForClinic(Request $request){
+
+
+        $appointments = Appointment::where('clinic_id',$request->clinic_id)->where('date',$request->date)->paginate(10) ;
+
+        return $this->returnData('data',  $this->resource::collection($appointments ), __('Get  succesfully'));
+
+    }
+
 }

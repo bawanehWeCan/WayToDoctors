@@ -378,6 +378,11 @@ Route::get('check-type-doctor/{doctor_id}', [AppointmentController::class, 'chec
 //counter of appointment
 Route::get('appointments-counter', [AppointmentController::class, 'getCounters']);
 
+//appointments by date for doctor and clinic
+Route::post('appointments-doctor-by-date', [AppointmentController::class, 'appByDateForDoctor']);
+
+Route::post('appointments-clinic-by-date', [AppointmentController::class, 'appByDateForClinic']);
+
 Route::middleware(['auth:api'])->group(function () {
 
     //Doctor
