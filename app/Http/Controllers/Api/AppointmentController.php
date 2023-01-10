@@ -166,25 +166,23 @@ class AppointmentController extends ApiController
 
 
        if(Count($check) > 0){
+        // هون بنقدر معمل شي احلى ..كيف؟
 
-        return $this->returnSuccessMessage(__('True'));
+        return $this->returnData('data',  $this->resource::collection($check ), __('Get  succesfully'));
+        // return $this->returnSuccessMessage(__('True'));
 
        }
 
        else{
 
-        return $this->returnError(__('False'));
+        return $this->returnError(__('not urgent appointments'));
 
        }
 
     }
 
     public function getCountersForDoctor($doctor_id){
-        // هاي الي خربانه مو ؟؟موو
 
-
-        echo 'metod work';
-        return;
 
         $data = array();
 

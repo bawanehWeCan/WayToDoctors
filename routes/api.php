@@ -378,10 +378,14 @@ Route::get('result/delete/{id}', [ResultController::class, 'delete']);
 
 Route::get('check-type-doctor/{doctor_id}', [AppointmentController::class, 'checkType']);
 
-//counter of appointment for doctor
-Route::get('appointments-counter-doctor/{doctor-id}', [AppointmentController::class, 'getCountersForDoctor']);
 
-Route::get('appointments-counter-clinic/{clinic-id}', [AppointmentController::class, 'getCountersForClinic']);
+//counter of appointment for doctor
+Route::get('appointments-counter-doctor/{doctor_id}', [AppointmentController::class, 'getCountersForDoctor']);
+// Route::get('appointments-counter-doctor/{doctor-id}', [AppointmentController::class, 'getCountersForDoctor']);
+
+
+
+Route::get('appointments-counter-clinic/{clinic_id}', [AppointmentController::class, 'getCountersForClinic']);
 
 //appointments by date for doctor and clinic
 Route::post('appointments-doctor-by-date', [AppointmentController::class, 'appByDateForDoctor']);
