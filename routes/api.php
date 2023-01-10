@@ -255,6 +255,18 @@ Route::middleware('changeLang')->group(function () {
         Route::post('city/edit/{id}', [CityController::class, 'edit']);
 
         Route::get('cities/{country_id}', [CityController::class, 'getCitiesByCountry']);
+
+        //WorkHour
+       Route::get('workhours', [WorkHourController::class, 'pagination']);
+       Route::post('workhour-create', [WorkHourController::class, 'save']);
+       Route::get('workhour/{id}', [WorkHourController::class, 'view']);
+       Route::get('workhour/delete/{id}', [WorkHourController::class, 'delete']);
+       Route::post('workhour/edit/{id}', [WorkHourController::class, 'edit']);
+
+       Route::get('workhours-for-doctor/{doctor_id}', [WorkHourController::class, 'workhourForDoctor']);
+       Route::get('workhours-for-clinic/{clinic_id}', [WorkHourController::class, 'workhourForClinic']);
+
+
 });
 
 //Favorite
@@ -392,12 +404,7 @@ Route::post('appointments-doctor-by-date', [AppointmentController::class, 'appBy
 
 Route::post('appointments-clinic-by-date', [AppointmentController::class, 'appByDateForClinic']);
 
-//WorkHour
-Route::get('workhours', [WorkHourController::class, 'pagination']);
-Route::post('workhour-create', [WorkHourController::class, 'save']);
-Route::get('workhour/{id}', [WorkHourController::class, 'view']);
-Route::get('workhour/delete/{id}', [WorkHourController::class, 'delete']);
-Route::post('workhour/edit/{id}', [WorkHourController::class, 'edit']);
+
 
 Route::middleware(['auth:api'])->group(function () {
 

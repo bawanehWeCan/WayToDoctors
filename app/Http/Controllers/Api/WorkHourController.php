@@ -29,4 +29,22 @@ class WorkHourController extends ApiController
         return $this->update($id,$request->all());
 
     }
+
+    public function workhourForDoctor($doctor_id){
+
+
+        $workhours = WorkHour::where('doctor_id',$doctor_id)->paginate(10) ;
+
+        return $this->returnData('data',  $this->resource::collection($workhours ), __('Get  succesfully'));
+
+    }
+
+    public function workhourForClinic($clinic_id){
+
+
+        $workhours = WorkHour::where('clinic_id',$clinic_id)->paginate(10) ;
+
+        return $this->returnData('data',  $this->resource::collection($workhours ), __('Get  succesfully'));
+
+    }
 }

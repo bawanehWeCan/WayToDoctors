@@ -151,7 +151,7 @@ class AppointmentController extends ApiController
     }
 
     public function appointmentsByClinic($clinic_id){
-//هي شغالة ما احلاها
+
 
         $appointments = Appointment::where('clinic_id',$clinic_id)->paginate(10) ;
 
@@ -208,18 +208,18 @@ class AppointmentController extends ApiController
 
        }
 
-       public function getCounters(){
+    //    public function getCounters(){
 
-        $data = array();
+    //     $data = array();
 
-        $data['completed']=Appointment::where('doctor_id',$doctor_id)->where('status','Finished')->count();
-        // dd($data['complete']);
-        $data['notCompleted']=Appointment::where('doctor_id',$doctor_id)->where('status','!=','Finished')->count();
+    //     $data['completed']=Appointment::where('doctor_id',$doctor_id)->where('status','Finished')->count();
+    //     // dd($data['complete']);
+    //     $data['notCompleted']=Appointment::where('doctor_id',$doctor_id)->where('status','!=','Finished')->count();
 
-        return $this->returnData( 'data' ,  $data , __('Succesfully'));
+    //     return $this->returnData( 'data' ,  $data , __('Succesfully'));
 
 
-       }
+    //    }
 
        public function appByDateForDoctor(Request $request){
 
