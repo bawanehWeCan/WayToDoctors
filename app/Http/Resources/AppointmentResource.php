@@ -29,8 +29,8 @@ class AppointmentResource extends JsonResource
             'doctor'=>new DoctorResource($this?->doctor),
 
 
-            // 'user'=>new UserResource($this->user),
-            'user_id'=>$this->user?->id,
+            'user'=>new UserResource($this?->user),
+            // 'user_id'=>$this->user?->id,
             'clinic_id'=>$this->clinic?->id,
             'files'=> FileResource::collection($this?->files),
 
