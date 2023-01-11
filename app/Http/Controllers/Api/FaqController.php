@@ -19,8 +19,15 @@ class FaqController extends ApiController
         $this->repositry =  new Repository($this->model);
     }
 
-    public function save( FaqRequest $request ){
+    public function save( Request $request ){
         return $this->store( $request->all() );
+    }
+
+    public function edit($id,Request $request){
+
+
+        return $this->update($id,$request->all());
+
     }
 
 }

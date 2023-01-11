@@ -82,9 +82,10 @@ Route::middleware('changeLang')->group(function () {
     Route::get('categories-by-type/{type}', [CategoryController::class, 'getCategoryByType']);
 
     //faq
-    Route::get('faq', [FaqController::class, 'pagination']);
+    Route::get('faqs', [FaqController::class, 'pagination']);
     Route::post('faq-create', [FaqController::class, 'save']);
     Route::get('faq/{id}', [FaqController::class, 'view']);
+    Route::post('faq/edit/{id}', [FaqController::class, 'edit']);
     Route::get('faq/delete/{id}', [FaqController::class, 'delete']);
 
     //Clinic
