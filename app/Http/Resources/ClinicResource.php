@@ -19,6 +19,10 @@ class ClinicResource extends JsonResource
 
             'id'=>$this->id,
             'name'=>$this->name,
+            'phone'=>$this?->phone,
+            'address'=>$this?->address,
+            'lat'=>$this?->lat,
+            'long'=>$this?->long,
         ];
     }
 }
